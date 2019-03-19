@@ -5,4 +5,6 @@
 #ifndef APP_M0_H
 #define APP_M0_H
 
+int m0();
+
 #endif //APP_M0_H
