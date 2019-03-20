@@ -4,6 +4,9 @@
 
 #ifndef APP_M0_H
 #define APP_M0_H
+#define APP_M0_EXIT 0
+#define APP_M0_HELP 1
+#define APP_M0_LOGIN 2
 
 int m0();
 
