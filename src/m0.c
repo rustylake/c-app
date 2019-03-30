@@ -1,11 +1,11 @@
 //
 // Created by pengy on 2019/3/19.
 //
-
-#include "../header/m0.h"
+#include "m0.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "m1.h"
+#include "m2.h"
 int m0_window_show(){
     int cmd;
     system("CLS");
@@ -27,7 +27,7 @@ int m0_call_back(cmd){
         m1();
     }
     if (cmd==APP_M0_LOGIN){
-        //
+        m2();
     }
 
     return cmd;
