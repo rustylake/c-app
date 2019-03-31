@@ -1,6 +1,10 @@
+//文件名：m1.c
+//作者：peny
+//日期：20190330
 //
-// Created by pengy on 2019/3/19.
+//描述：帮助页面
 //
+//操作
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>

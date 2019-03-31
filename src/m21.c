@@ -1,5 +1,10 @@
+//文件名：main.c
+//作者：peny
+//日期：20190330
 //
-// Created by pengy on 2019/3/26.
+//描述：登录模块
+//
+//操作
 //
 #include <conio.h>
 #include "m21.h"

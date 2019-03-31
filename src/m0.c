@@ -1,5 +1,10 @@
+//文件名：m0.c
+//作者：peny
+//日期：20190330
 //
-// Created by pengy on 2019/3/19.
+//描述：开始模块
+//
+//操作
 //
 #include "m0.h"
 #include <stdio.h>
