@@ -4,13 +4,15 @@
 //
 //描述：帮助页面
 //
+//接口及作用请参照头文件
 //操作
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "../header/m1.h"
-int m1_window_show(){
-  //  clrscr();
+
+#include "m1.h"
+
+int m1_window_show() {
     system("CLS");
     printf("012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789");
     printf("\n\n\n\n");
@@ -29,13 +31,13 @@ int m1_window_show(){
     return 0;
 }
 
-int m1_call_back(){
+int m1_call_back() {
     return 0;
 }
 
-int m1(){
-    int cmd=0;
-    while (1){
+int m1() {
+    int cmd = 0;
+    while (1) {
         m1_window_show();
         m1_call_back();
         break;

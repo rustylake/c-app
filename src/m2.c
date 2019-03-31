@@ -8,6 +8,8 @@
 //
 #include "m2.h"
 #include "m21.h"
+#include "m22.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 int m2_show_window(int cmd){
@@ -33,6 +35,7 @@ int m2_call_back(int cmd){
             m21();
             break;
         case APP_M2_REGIST:
+            m22();
             break;
         case APP_M2_FORGITE:
             break;

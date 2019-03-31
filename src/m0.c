@@ -22,6 +22,7 @@ int m0_window_show(){
     printf("请输入相应数字：\n");
     printf("    1  帮助页面\n");
     printf("    2  登录系统\n");
+    printf("    3  管理系统\n");
     printf("    0  退出\n");
     scanf("%d",&cmd);
     return cmd;
