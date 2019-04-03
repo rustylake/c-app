@@ -5,32 +5,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "m22.h"
+#include "model.h"
 
-static char username[256];
-static char password[256];
-static char password2[256];
 
-int m22_YN(int* cmd){
-    printf("确定要注册吗（Y/N）\n");
-    char login;
-    int re=0;
-    login=getchar();
-    fflush(stdin);
-    if(login=='Y'||login=='y'){*cmd=1;re=1;}
-    if(login=='n'||login=='N'){*cmd=0;re=1;}
-    return re;
-}
-
-int m22_check_password(){
-    return 0;
-}
-
-int m22_check_username(){
-    return 0;
-}
 
 //*************************************************************
-int m22_window_show(){
+int m22_window_show(int cmd){
+
+    char username[128];
+    char password[256];
+    char password2[256];
     system("CLS");
     printf("012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789");
     printf("\n\n\n\n");
@@ -48,27 +32,17 @@ int m22_window_show(){
     printf("\n    请确认密码\n");
     gets(password2);
     fflush(stdin);
-    int re=0,cmd=0;
-    while(re!=1){re=m22_YN(&cmd);}
+    cmd = YN(cmd);
     return cmd;
 }
-int m22_call_back(int cmd){
+int m22_call_back(int cmd,char username[],char password[],char password2[]){
     if (cmd == 0)return 0;
-    if(m22_check_password()==0){
-        printf("两次密码输入不一致，请重新输入");
-        return 1;
-    } else{
-        if (m22_check_username()==0){
-            printf("用户名已存在");
-            return 1;
-        }
-    }
-    //添加账号
+    regist(username,password,password2);
     return 0;
 }
 
 int m22(){
-    int cmd=1;
+    int cmd=0;
     while (1){
         cmd=m22_window_show(cmd);
         cmd=m22_call_back(cmd);

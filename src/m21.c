@@ -12,19 +12,12 @@
 
 #include "m21.h"
 #include "m22.h"
-static char admin[256];
+#include "model.h"
+
+static char username[256];
 static char password[256];
 
-int m21_YN(int* cmd){
-    printf("确定要登录吗（Y/N）\n");
-    char login;
-    int re=0;
-    login=getchar();
-    fflush(stdin);
-    if(login=='Y'||login=='y'){*cmd=1;re=1;}
-    if(login=='n'||login=='N'){*cmd=0;re=1;}
-    return re;
-}
+
 //检验账号密码
 int login(int* cmd){
     if(0){}
@@ -32,7 +25,7 @@ int login(int* cmd){
 }
 
 
-int m21_show_window(){
+int m21_show_window(int cmd){
     system("CLS");
     printf("012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789");
     printf("\n\n\n\n");
@@ -41,13 +34,13 @@ int m21_show_window(){
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     printf("登录账户\n");
     printf("    请输入账号\n");
-    scanf("%s",&admin[0]);
     fflush(stdin);
+    gets(username);
     printf("\n    请输入密码\n");
-    scanf("%s",&password[0]);
     fflush(stdin);
-    int cmd=0,re=0;
-    while(re!=1){re=m21_YN(&cmd);}
+    gets(username);
+    fflush(stdin);
+    cmd=YN(cmd);
     return cmd;
 }
 
@@ -60,7 +53,7 @@ int m21_call_back(int cmd){
 int m21(){
     int cmd=1;
     while (1){
-        cmd=m21_show_window();
+        cmd=m21_show_window(cmd);
         cmd=m21_call_back(cmd);
         if (cmd==2){
             //进入系统

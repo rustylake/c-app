@@ -39,7 +39,7 @@ int m2_call_back(int cmd){
             break;
         case APP_M2_FORGITE:
             break;
-        break;
+
     }
     return cmd;
 }
