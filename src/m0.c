@@ -29,10 +29,10 @@ int m0_window_show(){
 }
 
 int m0_call_back(cmd){
-    if (cmd==APP_M0_HELP){
+    if (cmd==APP_M0_HELP){//°ïÖú
         m1();
     }
-    if (cmd==APP_M0_LOGIN){
+    if (cmd==APP_M0_LOGIN){//µÇÂ¼
         m2();
     }
 

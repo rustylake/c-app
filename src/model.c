@@ -4,8 +4,11 @@
 
 #include "model.h"
 #include <stdio.h>
+#include <string.h>
+#include <direct.h>
 
-int YN(int cmd) {
+int YN(void) {
+    int cmd=0;
     int re = 0;
     while (re != 1) {
         printf("确定要注册吗（Y/N）\n");
@@ -29,18 +32,33 @@ int click_username(char username[]){
 }
 
 int click_password(char password1[], char password2[]){
-
+    return !strcmp(password1,password2);
 }
 
-int login(char username[],char password[]){}
 int regist(char *username, char *password, char *password2){
     if(click_password(password2,password)==0){
         printf("两次密码输入不一致，请重新输入");
-        return 1;
+        return M22_FAILD;
     } else{
         if (click_username(username)==0){
             printf("用户名已存在");
-            return 1;
+            return M22_FAILD;
         }
     }
+    FILE* fp=NULL;
+    fp=fopen("../yhm","at");
+    if (fp==NULL) {
+        printf("文件打开失败，请联系管理员");
+        return M22_FAILD;
+    }
+    fprintf(fp,"%s",username);
+    fprintf(fp,"\n");
+    fprintf(fp,"%s",password);
+    fprintf(fp,"\n");
+    fclose(fp);
+    return 1;
+}
+
+int login(char username[],char password[]){
+
 }

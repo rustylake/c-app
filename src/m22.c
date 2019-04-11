@@ -4,13 +4,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include "m22.h"
 #include "model.h"
 
 
+int m22_call_back(int cmd, char username[], char password[], char password2[]);
 
 //*************************************************************
-int m22_window_show(int cmd){
+int m22_window_show(int cmd) {
 
     char username[128];
     char password[256];
@@ -32,21 +34,23 @@ int m22_window_show(int cmd){
     printf("\n    请确认密码\n");
     gets(password2);
     fflush(stdin);
-    cmd = YN(cmd);
+    cmd = YN();
+    cmd = m22_call_back(cmd, username, password, password2);
     return cmd;
 }
-int m22_call_back(int cmd,char username[],char password[],char password2[]){
-    if (cmd == 0)return 0;
-    regist(username,password,password2);
-    return 0;
+
+int m22_call_back(int cmd, char username[], char password[], char password2[]) {
+    if (cmd == 0)return M22_EXIT;
+    cmd = regist(username, password, password2);
+    if (cmd == M22_SUCCESS)printf("\n注册成功");
+    if (cmd == M22_FAILD)printf("\n注册失败，请重试");
+    printf("\n按任意键继续");
+    getch();
+    return cmd;
 }
 
-int m22(){
-    int cmd=0;
-    while (1){
-        cmd=m22_window_show(cmd);
-        cmd=m22_call_back(cmd);
-        if(cmd==0)break;
-    }
-    return 0;
+int m22() {
+    int cmd = 1;
+    cmd = m22_window_show(cmd);
+    return cmd;
 }

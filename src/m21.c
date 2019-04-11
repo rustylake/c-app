@@ -18,13 +18,6 @@ static char username[256];
 static char password[256];
 
 
-//检验账号密码
-int login(int* cmd){
-    if(0){}
-    return 0;
-}
-
-
 int m21_show_window(int cmd){
     system("CLS");
     printf("012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789");
@@ -38,27 +31,27 @@ int m21_show_window(int cmd){
     gets(username);
     printf("\n    请输入密码\n");
     fflush(stdin);
-    gets(username);
+    gets(password);
     fflush(stdin);
-    cmd=YN(cmd);
+    cmd=YN();
     return cmd;
 }
 
 int m21_call_back(int cmd){
     if (cmd==0)return 0;
-    login(&cmd);
-    return 1;
+    cmd=login(username,password);
+    return cmd;
 }
 
 int m21(){
-    int cmd=1;
+    int cmd=0;
     while (1){
         cmd=m21_show_window(cmd);
         cmd=m21_call_back(cmd);
-        if (cmd==2){
+        if (cmd==M21_LOGIN){
             //进入系统
         }
-        if (cmd==0)break;
+        if (cmd==M21_EXIT)break;
     }
     return cmd;
 }

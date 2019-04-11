@@ -29,15 +29,17 @@ int m2_show_window(int cmd){
 }
 int m2_call_back(int cmd){
     switch (cmd){
-        case APP_M2_EXIT:
+        case APP_M2_EXIT://返回主界面
             break;
-        case APP_M2_LOGIN:
+        case APP_M2_LOGIN://登录
             m21();
             break;
-        case APP_M2_REGIST:
+        case APP_M2_REGIST://注册
             m22();
             break;
-        case APP_M2_FORGITE:
+        case APP_M2_FORGITE://忘记密码
+            break;
+        default:
             break;
 
     }
