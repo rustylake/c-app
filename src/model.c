@@ -51,10 +51,8 @@ int regist(char *username, char *password, char *password2){
         printf("文件打开失败，请联系管理员");
         return M22_FAILD;
     }
-    fprintf(fp,"%s",username);
-    fprintf(fp,"\n");
-    fprintf(fp,"%s",password);
-    fprintf(fp,"\n");
+    fwrite(username, sizeof(char), 128, fp);
+    fwrite(password, sizeof(char), 128, fp);
     fclose(fp);
     return 1;
 }
