@@ -1,0 +1,6 @@
+
+*.idea
+CMakeLists1.txt
+cmake*
+*.docx
+yhm*
