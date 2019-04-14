@@ -9,6 +9,7 @@
 #include "m2.h"
 #include "m21.h"
 #include "m22.h"
+#include "m3.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -22,7 +23,7 @@ int m2_show_window(int cmd){
     printf("登录系统：\n");
     printf("    1  登录\n");
     printf("    2  用户注册\n");
-    printf("    3. 忘记密码\n");
+    printf("    3. 忘记密码（仅限管理员使用）\n");
     printf("    0  返回\n");
     scanf("%d",&cmd);
     return cmd;
@@ -38,6 +39,7 @@ int m2_call_back(int cmd){
             m22();
             break;
         case APP_M2_FORGITE://忘记密码
+
             break;
         default:
             break;

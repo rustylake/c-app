@@ -7,11 +7,11 @@
 #include <string.h>
 #include <direct.h>
 
-int YN(void) {
+int YN() {
     int cmd=0;
     int re = 0;
     while (re != 1) {
-        printf("确定要注册吗（Y/N）\n");
+        printf("确定要继续吗（Y/N）\n");
         char login;
         login = getchar();
         fflush(stdin);
@@ -46,7 +46,7 @@ int regist(char *username, char *password, char *password2){
         }
     }
     FILE* fp=NULL;
-    fp=fopen("../yhm","at");
+    fp = fopen(DB_USER, "at");
     if (fp==NULL) {
         printf("文件打开失败，请联系管理员");
         return M22_FAILD;
@@ -57,6 +57,23 @@ int regist(char *username, char *password, char *password2){
     return 1;
 }
 
-int login(char username[],char password[]){
-
+int login(char username[], char password[]) {
+    char user[128];
+    char pas[128];
+    int cmd = 0;
+    FILE *fp = NULL;
+    fp = fopen(DB_USER, "rt");
+    if (fp == NULL) {
+        printf("文件打开失败，请联系管理员");
+        return M22_FAILD;
+    }
+    while (1) {
+        if (fread(user, sizeof(char), 128, fp) != 128)break;
+        fread(pas, sizeof(char), 128, fp);
+        if (click_password(user, username) && click_password(pas, password)) {
+            cmd = 1;
+            break;
+        }
+    }
+    return cmd;
 }

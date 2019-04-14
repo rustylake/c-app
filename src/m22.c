@@ -13,7 +13,6 @@ int m22_call_back(int cmd, char username[], char password[], char password2[]);
 
 //*************************************************************
 int m22_window_show(int cmd) {
-
     char username[128];
     char password[256];
     char password2[256];

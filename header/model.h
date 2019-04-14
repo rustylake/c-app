@@ -7,9 +7,11 @@
 
 #include "m22.h"
 
-int YN(void);//è¾“å…¥yè¿”å›1ï¼Œnè¿”å›0
-int click_password(char[],char[]);//æ£€æŸ¥ä¸¤æ¬¡å¯†ç æ˜¯å¦ç›¸åŒ,ç›¸åŒè¿”å›0
-int click_username(char[]);//æ£€éªŒç”¨æˆ·åæ˜¯å¦å­˜åœ¨
-int login(char[],char []);//ç™»å½•æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›2
-int regist(char [],char [], char []);//æ³¨å†ŒæˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+#define DB_USER "../yhm"
+
+int YN(void);//ÊäÈëy·µ»Ø1£¬n·µ»Ø0
+int click_password(char[], char[]);//¼ì²éÁ½´ÎÃÜÂëÊÇ·ñÏàÍ¬,ÏàÍ¬·µ»Ø1
+int click_username(char[]);//¼ìÑéÓÃ»§ÃûÊÇ·ñ´æÔÚ
+int login(char[], char []);//µÇÂ¼³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø2
+int regist(char [], char [], char []);//×¢²á³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
 #endif //APP_MODEL_H

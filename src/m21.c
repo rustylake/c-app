@@ -12,6 +12,7 @@
 
 #include "m21.h"
 #include "m22.h"
+#include <m3.h>
 #include "model.h"
 
 static char username[256];
@@ -49,7 +50,9 @@ int m21(){
         cmd=m21_show_window(cmd);
         cmd=m21_call_back(cmd);
         if (cmd==M21_LOGIN){
+            m3(username);
             //进入系统
+            break;
         }
         if (cmd==M21_EXIT)break;
     }
