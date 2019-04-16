@@ -5,6 +5,7 @@
 #include "model.h"
 #include <stdio.h>
 #include <string.h>
+#include <conio.h>
 #include <direct.h>
 
 int YN() {
@@ -27,8 +28,24 @@ int YN() {
     return cmd;
 }
 
-int click_username(char username[]){
-
+int click_username(char username[]) {
+    int i = 0;
+    char user[128];
+    FILE *fp = NULL;
+    fp = fopen(DB_USER, "ab+");
+    if (fp == NULL) {
+        printf("文件打开失败，请联系管理员");
+        return M22_FAILD;
+    }
+    while (1) {
+        if (fread(user, sizeof(char), 128, fp) != 128) {
+            i = 1;
+            break;
+        };
+        if (click_password(user, username))break;
+    }
+    fclose(fp);
+    return i;
 }
 
 int click_password(char password1[], char password2[]){
@@ -46,7 +63,7 @@ int regist(char *username, char *password, char *password2){
         }
     }
     FILE* fp=NULL;
-    fp = fopen(DB_USER, "at");
+    fp = fopen(DB_USER, "ab");
     if (fp==NULL) {
         printf("文件打开失败，请联系管理员");
         return M22_FAILD;
@@ -62,7 +79,7 @@ int login(char username[], char password[]) {
     char pas[128];
     int cmd = 0;
     FILE *fp = NULL;
-    fp = fopen(DB_USER, "rt");
+    fp = fopen(DB_USER, "rb");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
         return M22_FAILD;
@@ -70,10 +87,19 @@ int login(char username[], char password[]) {
     while (1) {
         if (fread(user, sizeof(char), 128, fp) != 128)break;
         fread(pas, sizeof(char), 128, fp);
-        if (click_password(user, username) && click_password(pas, password)) {
-            cmd = 1;
-            break;
+        if (click_password(user, username)) {
+            if (click_password(pas, password)) {
+                cmd = 1;
+            } else {
+                printf("密码错误\n按任意键继续");
+                getch();
+            }
+        } else {
+            printf("用户名不存在\n按任意键继续");
+            getch();
         }
+            break;
+
     }
     return cmd;
 }
