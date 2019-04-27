@@ -35,4 +35,5 @@ int m3(char username[]) {
         m3_call_back(cmd);
         if (0 == cmd)break;
     }
+    return 0;
 }

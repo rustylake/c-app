@@ -54,7 +54,7 @@ int regist(User user, char *username, char *password, char *password2) {
     gets(user.question);
     fflush(stdin);
     printf("ÇëÌîĞ´ÎÊÌâ´ğ°¸");
-    gets(user.question);
+    gets(user.an);
     User_add(user);
     return 1;
 }

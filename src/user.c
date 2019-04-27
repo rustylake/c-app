@@ -32,17 +32,15 @@ int User_clone(User *user1, User *user2) {
 
 int User_change(char username[], int c, char change[]) {
     User user;
-//    User_clone(&user2, &user1);
-
     FILE *fp = NULL;
-    fp = fopen(DB_USER, "ab");
+    fp = fopen(DB_USER, "ab+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
         return USER_FAIL;
     }
     while (fread(&user, sizeof(User), 1, fp)) {
         if (click_password(user.username, username)) {
-            fseek(fp, -1 * sizeof(User), SEEK_CUR);
+            fseek(fp, sizeof(User) * (-1), SEEK_CUR);
             switch (c) {
                 case USER_PASSWORD:
                     strcpy(user.password, change);
@@ -61,7 +59,6 @@ int User_change(char username[], int c, char change[]) {
             return 1;
         }
     }
-    printf("用户不存在");
     return 0;
 }
 
