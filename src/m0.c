@@ -9,8 +9,8 @@
 #include "m0.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "m1.h"
-#include "m2.h"
+#include "1/m1.h"
+#include "2/m2.h"
 int m0_window_show(){
     int cmd;
     system("CLS");

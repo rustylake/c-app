@@ -20,7 +20,7 @@ typedef struct User User;
 /***********************************************/
 
 int User_clone(User *user1, User *user2);//将user2复制到user1 成功返回1 失败返回0
-int User_add(User);//增
+int User_add(User);//增加用户
 int User_change(char username[], int, char[]);//将username的用户int项的内容改为char，成功返回1，失败返回0
 int User_view(User *, char []);//查 查找成功返回1 失败返回0
 #endif //APP_USER_H

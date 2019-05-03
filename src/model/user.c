@@ -2,8 +2,8 @@
 // Created by pengy on 2019/4/21.
 //
 
-#include "user.h"
-#include "model.h"
+#include "model/user.h"
+#include "model/model.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <direct.h>
@@ -31,6 +31,7 @@ int User_clone(User *user1, User *user2) {
 }
 
 int User_change(char username[], int c, char change[]) {
+    if (c != USER_PASSWORD && c != USER_AN && c != USER_QUESTION)return 0;
     User user;
     FILE *fp = NULL;
     fp = fopen(DB_USER, "rb+");
@@ -51,8 +52,6 @@ int User_change(char username[], int c, char change[]) {
                 case USER_AN:
                     strcpy(user.an, change);
                     break;
-                default:
-                    break;
             }
             fflush(stdin);
             fwrite(&user, sizeof(User), 1, fp);
@@ -60,6 +59,7 @@ int User_change(char username[], int c, char change[]) {
             return 1;
         }
     }
+    fclose(fp);
     return 0;
 }
 
@@ -76,6 +76,7 @@ int User_view(User *user, char username[]) {
             return 1;
         }
     }
+    fclose(fp);
     return 0;
 
 }

@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
-#include "m23.h"
-#include "model.h"
-#include "user.h"
+#include "2/m23.h"
+#include "model/model.h"
+#include "model/user.h"
 
 int m23_call_back(char username[]);
 
@@ -32,7 +32,7 @@ int m23_show_window() {
     printf("                                                  商店零售管理系统\n");
     printf("                                                         v 1.1\n");
     printf("------------------------------------------------------------------------------------------------------------------------\n");
-    printf("请输入用户名");
+    printf("请输入用户名\n");
     fflush(stdin);
     gets(username);
     fflush(stdin);

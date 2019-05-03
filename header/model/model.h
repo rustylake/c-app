@@ -5,10 +5,11 @@
 #ifndef APP_MODEL_H
 #define APP_MODEL_H
 
-#include "m22.h"
+#include "2/m22.h"
 #include "user.h"
 
-#define DB_USER "../yhm"
+#define DB_USER "../../users.db"
+#define DB_Good "../../goods.db"
 
 int YN(void);//输入y返回1，n返回0
 int click_password(char[], char[]);//检查两次密码是否相同,相同返回1

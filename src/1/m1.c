@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "m1.h"
+#include "1/m1.h"
 
 int m1_window_show() {
     system("CLS");

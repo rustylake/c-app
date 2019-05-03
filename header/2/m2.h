@@ -8,5 +8,7 @@
 #define APP_M2_REGIST 2
 #define APP_M2_EXIT 0
 #define APP_M2_FORGITE 3
+
 int m2();
+
 #endif //APP_M2_H

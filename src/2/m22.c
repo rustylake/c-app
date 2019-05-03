@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#include "m22.h"
-#include "model.h"
-#include "user.h"
+#include "2/m22.h"
+#include "model/model.h"
+#include "model/user.h"
 
 int m22_call_back(int cmd, User, char username[], char password[], char password2[]);
 

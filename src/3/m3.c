@@ -3,7 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "m3.h"
+#include "3/m3.h"
 
 int m3_show_window(char username[]) {
     int cmd;

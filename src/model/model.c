@@ -2,7 +2,7 @@
 // Created by pengy on 2019/4/2.
 //
 
-#include "model.h"
+#include "model/model.h"
 
 #include <stdio.h>
 #include <string.h>
