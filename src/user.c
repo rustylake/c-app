@@ -33,7 +33,7 @@ int User_clone(User *user1, User *user2) {
 int User_change(char username[], int c, char change[]) {
     User user;
     FILE *fp = NULL;
-    fp = fopen(DB_USER, "ab+");
+    fp = fopen(DB_USER, "rb+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
         return USER_FAIL;
@@ -54,6 +54,7 @@ int User_change(char username[], int c, char change[]) {
                 default:
                     break;
             }
+            fflush(stdin);
             fwrite(&user, sizeof(User), 1, fp);
             fclose(fp);
             return 1;
