@@ -7,7 +7,7 @@
 #define APP_M0_EXIT 0
 #define APP_M0_HELP 1
 #define APP_M0_LOGIN 2
-
+#define APP_M0_TEST 4
 int m0();
 
 #endif //APP_M0_H

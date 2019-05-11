@@ -7,9 +7,12 @@
 
 #include "2/m22.h"
 #include "user.h"
+#include "goods.h"
 
-#define DB_USER "../../users.db"
-#define DB_Good "../../goods.db"
+#define DB_USER "../users.db"
+#define DB_Good "../0goods.db"
+#define CMD 999
+#define VERSION "V1.1"
 
 int YN(void);//输入y返回1，n返回0
 int click_password(char[], char[]);//检查两次密码是否相同,相同返回1

@@ -23,7 +23,7 @@ int m21_show_window(int cmd) {
     system("CLS");
     printf("\n\n\n\n");
     printf("                                                  商店零售管理系统\n");
-    printf("                                                         v 1.1\n");
+    printf("                                                        %s\n", VERSION);
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     printf("登录账户\n");
     printf("    请输入账号\n");
@@ -44,7 +44,7 @@ int m21_call_back(int cmd) {
 }
 
 int m21() {
-    int cmd = 0;
+    int cmd = CMD;
     while (1) {
         cmd = m21_show_window(cmd);
         cmd = m21_call_back(cmd);

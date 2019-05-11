@@ -11,6 +11,7 @@
 #include "2/m21.h"
 #include "2/m22.h"
 #include "3/m3.h"
+#include "model/model.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -19,14 +20,14 @@ int m2_show_window(int cmd) {
     system("CLS");
     printf("\n\n\n\n");
     printf("                                                  商店零售管理系统\n");
-    printf("                                                         v 1.1\n");
+    printf("                                                         %s\n", VERSION);
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     printf("登录系统：\n");
     printf("    1  登录\n");
     printf("    2  用户注册\n");
     printf("    3. 忘记密码\n");
     printf("    0  返回\n");
-    scanf("%d", &cmd);
+    while (!scanf("%d", &cmd))fflush(stdin);
     return cmd;
 }
 
@@ -52,7 +53,7 @@ int m2_call_back(int cmd) {
 
 
 int m2() {
-    int cmd = 1;
+    int cmd = CMD;
     while (1) {
         cmd = m2_show_window(cmd);
         cmd = m2_call_back(cmd);

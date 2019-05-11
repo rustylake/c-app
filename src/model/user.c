@@ -63,7 +63,7 @@ int User_change(char username[], int c, char change[]) {
     return 0;
 }
 
-int User_view(User *user, char username[]) {
+int User_scarch(User *user, char *username) {
     FILE *fp = NULL;
     fp = fopen(DB_USER, "ab+");
     if (fp == NULL) {

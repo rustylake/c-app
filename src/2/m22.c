@@ -18,7 +18,7 @@ int m22_window_show(int cmd) {
     system("CLS");
     printf("\n\n\n\n");
     printf("                                                  商店零售管理系统\n");
-    printf("                                                         v 1.1\n");
+    printf("                                                         %s\n", VERSION);
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     printf("注册账户\n");
     printf("    请输入账号\n");
@@ -47,7 +47,7 @@ int m22_call_back(int cmd, User user, char username[], char password[], char pas
 }
 
 int m22() {
-    int cmd = 1;
+    int cmd = CMD;
     cmd = m22_window_show(cmd);
     return cmd;
 }

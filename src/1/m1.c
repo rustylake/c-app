@@ -11,12 +11,13 @@
 #include <stdlib.h>
 
 #include "1/m1.h"
+#include "model/model.h"
 
 int m1_window_show() {
     system("CLS");
     printf("\n\n\n\n");
     printf("                                                  商店零售管理系统\n");
-    printf("                                                         v 1.1\n");
+    printf("                                                        %s\n", VERSION);
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     printf("    帮助页面\n");
     printf("    1  。。。。。\n");
@@ -35,7 +36,7 @@ int m1_call_back() {
 }
 
 int m1() {
-    int cmd = 0;
+    int cmd = CMD;
     while (1) {
         m1_window_show();
         m1_call_back();

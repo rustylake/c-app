@@ -30,7 +30,7 @@ int YN() {
 }
 
 int click_username(User user, char username[]) {
-    if (User_view(&user, username))
+    if (User_scarch(&user, username))
         return 0;
     return 1;
 }
@@ -41,19 +41,19 @@ int click_password(char password1[], char password2[]) {
 
 int regist(User user, char *username, char *password, char *password2) {
     if (click_password(password2, password) == 0) {
-        printf("两次密码输入不一致，请重新输入");
+        printf("\n两次密码输入不一致，请重新输入");
         return M22_FAILD;
     } else {
         if (click_username(user, username) == 0) {
-            printf("用户名已存在");
+            printf("\n用户名已存在");
             return M22_FAILD;
         }
     }
     fflush(stdin);
-    printf("请填写密保问题");
+    printf("\n请填写密保问题\n");
     gets(user.question);
     fflush(stdin);
-    printf("请填写问题答案");
+    printf("请填写问题答案\n");
     gets(user.an);
     User_add(user);
     return 1;
@@ -62,7 +62,7 @@ int regist(User user, char *username, char *password, char *password2) {
 int login(char username[], char password[]) {
     int cmd = 0;
     User user;
-    if (!User_view(&user, username)) {
+    if (!User_scarch(&user, username)) {
         printf("用户名不存在\n按任意键继续");
         getch();
     } else {

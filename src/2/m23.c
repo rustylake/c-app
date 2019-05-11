@@ -12,7 +12,7 @@ int m23_call_back(char username[]);
 
 int m23_click_question(User *user, char username[]) {
     int cmd = 0;
-    if (!User_view(user, username)) {
+    if (!User_scarch(user, username)) {
         printf("\n用户名不存在\n");
     } else {
         printf("%s:\n", user->question);
@@ -30,7 +30,7 @@ int m23_show_window() {
     system("CLS");
     printf("\n\n\n\n");
     printf("                                                  商店零售管理系统\n");
-    printf("                                                         v 1.1\n");
+    printf("                                                         %s\n", VERSION);
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     printf("请输入用户名\n");
     fflush(stdin);
@@ -42,7 +42,7 @@ int m23_show_window() {
 }
 
 int m23_call_back(char username[]) {
-    int cmd = 0;
+    int cmd = CMD;
     User user;
     if (m23_click_question(&user, username)) {
         char password[128];

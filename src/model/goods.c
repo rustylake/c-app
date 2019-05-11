@@ -141,5 +141,4 @@ int Good_view(Good *Good, int id) {
     }
     fclose(fp);
     return 0;
-
 }
