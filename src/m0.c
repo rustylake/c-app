@@ -6,9 +6,11 @@
 //
 //操作
 //
-#include "m0.h"
+
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "m0.h"
 #include "1/m1.h"
 #include "2/m2.h"
 #include "4/m40.h"
@@ -26,7 +28,7 @@ int m0_window_show() {
     printf("    1  帮助页面\n");
     printf("    2  登录系统\n");
     printf("    3  管理系统\n");
-//    printf("    4  测试项目\n");
+    printf("    4  测试项目\n");
     printf("    0  退出\n");
     while (!scanf("%d", &cmd))fflush(stdin);
     return cmd;
@@ -43,7 +45,7 @@ int m0_call_back(int cmd) {
         m40();
     }
     if (cmd == APP_M0_TEST) {//测试
-        test();
+        users();
     }
 
     return cmd;

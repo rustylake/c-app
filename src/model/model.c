@@ -75,3 +75,18 @@ int login(char username[], char password[]) {
     }
     return cmd;
 }
+
+int users(void) {
+    User user;
+    FILE *fp = NULL;
+    fp = fopen(DB_USER, "ab+");
+    if (fp == NULL) {
+        printf("\n文件打开失败，请联系管理员");
+        return 0;
+    }
+    printf("    姓名    密码    问题    答案\n");
+    while (fread(&user, sizeof(User), 1, fp)) {
+        printf("     %s       %s       %s       %s\n", user.username, user.password, user.question, user.an);
+    }
+    return 1;
+}
