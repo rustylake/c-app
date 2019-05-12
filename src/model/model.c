@@ -70,7 +70,7 @@ int login(char username[], char password[]) {
             printf("密码错误\n按任意键继续");
             getch();
         } else {
-            cmd = 1;
+            cmd = LOGIN;
         }
     }
     return cmd;

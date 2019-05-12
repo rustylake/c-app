@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include "1/m1.h"
 #include "2/m2.h"
+#include "4/m40.h"
 #include "model/model.h"
 #include "test.h"
 
@@ -37,6 +38,9 @@ int m0_call_back(int cmd) {
     }
     if (cmd == APP_M0_LOGIN) {//µÇÂ¼
         m2();
+    }
+    if (cmd == APP_M0_ADMIN) {//µÇÂ¼
+        m40();
     }
     if (cmd == APP_M0_TEST) {//²âÊÔ
         test();

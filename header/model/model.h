@@ -12,6 +12,7 @@
 #define DB_USER "../users.db"
 #define DB_Good "../0goods.db"
 #define CMD 999
+#define LOGIN 1
 #define VERSION "V1.1.2"
 
 int YN(void);// ‰»Îy∑µªÿ1£¨n∑µªÿ0
