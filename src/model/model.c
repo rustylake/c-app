@@ -88,5 +88,21 @@ int users(void) {
     while (fread(&user, sizeof(User), 1, fp)) {
         printf("     %s       %s       %s       %s\n", user.username, user.password, user.question, user.an);
     }
+
+    return 1;
+}
+
+int goods(void) {
+    Good good;
+    FILE *fp = NULL;
+    fp = fopen(DB_Good, "ab+");
+    if (fp == NULL) {
+        printf("\n文件打开失败，请联系管理员");
+        return 0;
+    }
+    printf("商品代号    名称    单价    数量    总价\n");
+    while (fread(&good, sizeof(Good), 1, fp)) {
+        printf("%c         %s       %c       %c       %c\n", good.id, good.name, good.prize, good.count, good.total);
+    }
     return 1;
 }

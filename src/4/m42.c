@@ -4,46 +4,45 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "model/model.h"
-#include "4/m4.h"
-#include "4/m41.h"
+#include <conio.h>
+
 #include "4/m42.h"
-int m4_show_window(char username[]) {
+#include "model/model.h"
+
+int m42_show_window(char username[]) {
     int cmd = CMD;
     system("CLS");
-    printf("欢迎，管理员：%s", username);
+    printf("当前用户：%s", username);
     printf("\n\n\n\n");
     printf("                                                  商店零售管理系统\n");
     printf("                                                         %s\n", VERSION);
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     printf("请选择要执行的操作：\n");
-    printf("     用户管理：1");
-    printf("\n     商品管理：2");
-    printf("\n     订单查询：3");
-    printf("\n     退出：0\n");
+    printf("     查看商品：1\n");
+    printf("     添加商品：2\n");
+    printf("     删除商品：3\n");
+    printf("     更改商品信息：4\n");
+    printf("     退出：0\n");
     while (!scanf("%d", &cmd))fflush(stdin);
     return cmd;
 }
 
-int m4_call_back(int cmd, char username[]) {
-    if (cmd == APP_M4_USER) {
-        m41(username);
-    }
-    if (cmd == APP_M4_GOODS) {
-        m42(username);
-    }
-    if (cmd == APP_M4_LIST) {
-
+int m42_call_back(int cmd, char username[]) {
+    if (cmd == 1) {
+        goods();
+        fflush(stdin);
+        printf("\n按任意键继续");
+        getch();
     }
     return cmd;
 }
 
-int m4(char username[]) {
+int m42(char username[]) {
     int cmd = CMD;
     while (1) {
-        cmd = m4_show_window(username);
-        m4_call_back(cmd, username);
-        if (APP_M4_EXIT == cmd)break;
+        cmd = m42_show_window(username);
+        m42_call_back(cmd, username);
+        if (0 == cmd)break;
     }
     return 0;
 }

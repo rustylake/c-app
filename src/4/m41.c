@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "4/m41.h"
 #include "model/model.h"
 #include "model/user.h"
@@ -18,14 +19,16 @@ int m41_show_window(char username[]) {
     printf("------------------------------------------------------------------------------------------------------------------------\n");
     users();
     printf("请选择要执行的操作：\n");
-//    printf("     购买商品：1");
-//    printf("\n     个人资料：2");
-//    printf("\n     退出：0\n");
+    printf("     修改用户信息：1");
+    printf("\n     退出：0\n");
     while (!scanf("%d", &cmd))fflush(stdin);
     return cmd;
 }
 
 int m41_call_back(int cmd, char username[]) {
+    if (cmd == 1) {
+
+    }
     return cmd;
 }
 

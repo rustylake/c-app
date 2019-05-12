@@ -20,5 +20,6 @@ int click_password(char[], char[]);//检查两次密码是否相同,相同返回1
 int click_username(User, char[]);//检验用户名是否存在,存在返回0，不存在返回1
 int login(char[], char []);//登录成功返回1，失败返回2
 int regist(User, char [], char [], char []);//注册成功返回1，失败返回0
-int users(void);//列出所有用户
+int users(void);//列出所有用户信息
+int goods(void);//列出所有商品信息
 #endif //APP_MODEL_H
