@@ -103,15 +103,7 @@ int goods(void) {
     printf("商品代号     名  称      单  价       售  价       数  量       总  价\n");
     while (fread(&good, sizeof(Good), 1, fp)) {
         printf("   %-2d      %-10.10s       %-3d          %-3d          %-3d          %-3d\n", good.id, good.name,
-               good.outprize,
-               good.inprize, good.count, good.total);
-//        sprintf(stdin,"%d          %10.10s       %d       %d       %d      %d\n",good.id, good.name, good.outprize,
-//                good.inprize, good.count, good.total);
+               good.outprize, good.inprize, good.count, good.total);
+        return 1;
     }
-    return 1;
-}
-
-int add_goods(void) {
-    Good good;
-
 }
