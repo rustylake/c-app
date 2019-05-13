@@ -79,7 +79,7 @@ int login(char username[], char password[]) {
 int users(void) {
     User user;
     FILE *fp = NULL;
-    fp = fopen(DB_USER, "ab+");
+    fp = fopen(DB_USER, "rb+");
     if (fp == NULL) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
@@ -95,14 +95,20 @@ int users(void) {
 int goods(void) {
     Good good;
     FILE *fp = NULL;
-    fp = fopen(DB_Good, "ab+");
+    fp = fopen(DB_Good, "rb+");
     if (fp == NULL) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
     }
-    printf("商品代号    名称    单价    数量    总价\n");
+    printf("商品代号     名称      单价    售价    数量    总价\n");
     while (fread(&good, sizeof(Good), 1, fp)) {
-        printf("%c         %s       %c       %c       %c\n", good.id, good.name, good.prize, good.count, good.total);
+        printf("%d          %.10s       %d       %d       %d      %d\n", good.id, good.name, good.outprize,
+               good.inprize, good.count, good.total);
     }
     return 1;
+}
+
+int add_goods(void) {
+    Good good;
+
 }

@@ -10,7 +10,7 @@
 #include "goods.h"
 
 #define DB_USER "../users.db"
-#define DB_Good "../0goods.db"
+#define DB_Good "../goods.db"
 #define CMD 999
 #define LOGIN 1
 #define VERSION "V1.1.2"
