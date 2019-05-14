@@ -21,13 +21,14 @@ int m41_show_window(char username[]) {
     printf("请选择要执行的操作：\n");
     printf("     修改用户信息：1");
     printf("\n     退出：0\n");
-    while (!scanf("%d", &cmd))fflush(stdin);
+    while (!scanf("%d", &cmd))
+        fflush(stdin);
     return cmd;
 }
 
 int m41_call_back(int cmd, char username[]) {
     if (cmd == 1) {
-
+        //更改
     }
     return cmd;
 }

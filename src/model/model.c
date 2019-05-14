@@ -104,6 +104,7 @@ int goods(void) {
     while (fread(&good, sizeof(Good), 1, fp)) {
         printf("   %-2d      %-10.10s       %-3d          %-3d          %-3d          %-3d\n", good.id, good.name,
                good.outprize, good.inprize, good.count, good.total);
-        return 1;
     }
+    fclose(fp);
+    return 1;
 }

@@ -45,7 +45,7 @@ int m0_call_back(int cmd) {
         m40();
     }
     if (cmd == APP_M0_TEST) {//≤‚ ‘
-        users();
+        test();
     }
 
     return cmd;

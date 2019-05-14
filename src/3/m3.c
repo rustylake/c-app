@@ -19,13 +19,14 @@ int m3_show_window(char username[]) {
     printf("     购买商品：1");
     printf("\n     个人资料：2");
     printf("\n     退出：0\n");
-    while (!scanf("%d", &cmd))fflush(stdin);
+    while (!scanf("%d", &cmd))
+        fflush(stdin);
     return cmd;
 }
 
 int m3_call_back(int cmd, char username[]) {
     if (cmd == M3_BUY) {
-        //
+        //购买
     }
     if (cmd == M3_MATION) {
         m31(username);

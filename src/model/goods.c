@@ -15,11 +15,6 @@ int Good_init(Good *good, char name[128], int count, int inprize, int outprize) 
     good->outprize = outprize;
     int id = -1;
     Good good1;
-    good1.id = 0;
-    good1.outprize = 0;
-    good1.count = 0;
-    good1.inprize = 0;
-    strcpy(good1.name, "第一个商品");
     FILE *fp = NULL;
     fp = fopen(DB_Good, "ab+");
     if (fp == NULL) {
@@ -27,6 +22,11 @@ int Good_init(Good *good, char name[128], int count, int inprize, int outprize) 
         return Good_FAIL;
     }
     if (!fread(&good1, sizeof(Good), 1, fp)) {
+        good1.id = 0;
+        good1.outprize = 0;
+        good1.count = 0;
+        good1.inprize = 0;
+        strcpy(good1.name, "第一个商品");
         fwrite(&good1, sizeof(Good), 1, fp);
     }
     fseek(fp, sizeof(Good) * -1, SEEK_END);
@@ -114,13 +114,12 @@ int Good_change_Name(int id, char name[]) {
     }
     fclose(fp);
     return Good_FAIL;
-
 }
 
 int Good_getId(char name[]) {
     Good Good;
     FILE *fp = NULL;
-    fp = fopen(DB_Good, "ab+");
+    fp = fopen(DB_Good, "rb+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
         return Good_FAIL;
@@ -134,19 +133,19 @@ int Good_getId(char name[]) {
     return Good.id;
 }
 
-int Good_view(Good *Good, int id) {
+int Good_view(Good *good, int id) {
     FILE *fp = NULL;
-    fp = fopen(DB_Good, "ab+");
+    fp = fopen(DB_Good, "rb+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
         return Good_FAIL;
     }
-    while (fread(Good, sizeof(Good), 1, fp)) {
-        if (Good->id == id) {
-            fclose(fp);
-            return 1;
-        }
-    }
+    if (fseek(fp, sizeof(Good) * id, SEEK_SET) == -1)
+        return Good_FAIL;
+    fread(good, sizeof(Good), 1, fp);
     fclose(fp);
-    return 0;
+    if (good->id == id)
+        return 1;
+    else
+        return Good_FAIL;
 }
