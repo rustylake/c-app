@@ -3,7 +3,9 @@
 //
 
 #include <stdio.h>
+#include <conio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "4/m41.h"
 #include "model/model.h"
@@ -21,9 +23,47 @@ int m41_show_window(char username[]) {
     return cmd;
 }
 
-int m41_call_back(int cmd, char username[]) {
+int m41_call_back(int cmd) {
     if (cmd == 1) {
-        //更改
+        char username[128];
+        printf("要修改的用户名字是：");
+        fflush(stdin);
+        gets(username);
+        User user;
+        User_scarch(&user, username);
+        printf("\n姓名：%s   密码：%s   问题：%s  答案：%s\n", user.username, user.password, user.question, user.an);
+        printf("选择要更改的项目：0.取消\n                  1.密码\n                  2.问题\n                  3.答案\n");
+        int n = 0;
+        while (scanf("%d", &n) ? !(n <= 3 && n >= 0) : 1)
+            fflush(stdin);
+        char change[10] = {0};
+        switch (n) {
+            case 0:
+                return 0;
+            case 1:
+                n = USER_PASSWORD;
+                strcat(change, "密码");
+                break;
+            case 2:
+                n = USER_QUESTION;
+                strcat(change, "问题");
+                break;
+            case 3:
+                n = USER_AN;
+                strcat(change, "答案");
+                break;
+            default:
+                break;
+        }
+        printf("请输入新%s：", change);
+        char new[128];
+        fflush(stdin);
+        gets(new);
+        if (!YN())return 0;
+        User_change(username, n, new);
+        printf("\n修改成功\n按任意键继续");
+        fflush(stdin);
+        getch();
     }
     return cmd;
 }
@@ -32,7 +72,7 @@ int m41(char username[]) {
     int cmd = CMD;
     while (1) {
         cmd = m41_show_window(username);
-        m41_call_back(cmd, username);
+        m41_call_back(cmd);
         if (0 == cmd)break;
     }
     return 0;

@@ -19,11 +19,7 @@
 
 int m0_window_show() {
     int cmd = CMD;
-    system("CLS");
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(UNLOGIN);
     printf("请输入相应数字：\n");
     printf("    1  帮助页面\n");
     printf("    2  登录系统\n");

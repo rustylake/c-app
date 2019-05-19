@@ -15,9 +15,9 @@ int m31_show_window(User user) {
     printf("     姓名：%s", user.username);
     printf("\n     密保问题：%s", user.question);
     printf("\n     问题答案：%s\n", user.an);
-    printf("     修改问题：1");
-    printf("\n     修改答案：2");
-    printf(" \n    返回：0\n");
+    printf("\n修改问题：1");
+    printf("\n修改答案：2");
+    printf("\n返回：0\n");
     while (!scanf("%d", &cmd))fflush(stdin);
     return cmd;
 }
