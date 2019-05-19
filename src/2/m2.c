@@ -17,11 +17,7 @@
 #include <stdio.h>
 
 int m2_show_window(int cmd) {
-    system("CLS");
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(UNLOGIN);
     printf("登录系统：\n");
     printf("    1  登录\n");
     printf("    2  用户注册\n");

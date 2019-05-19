@@ -15,11 +15,7 @@ int m22_call_back(int cmd, User, char username[], char password[], char password
 int m22_window_show(int cmd) {
     User user;
     char password2[256];
-    system("CLS");
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(UNLOGIN);
     printf("注册账户\n");
     printf("    请输入账号\n");
     fflush(stdin);

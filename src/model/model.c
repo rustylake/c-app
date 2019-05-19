@@ -4,6 +4,7 @@
 
 #include "model/model.h"
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
@@ -107,4 +108,15 @@ int goods(void) {
     }
     fclose(fp);
     return 1;
+}
+
+int show_head(char username[]) {
+    system("CLS");
+    if (strcmp(username, UNLOGIN))
+        printf("当前用户：%s", username);
+    printf("\n\n\n\n");
+    printf("                                                  商店零售管理系统\n");
+    printf("                                                         %s\n", VERSION);
+    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    return 0;
 }

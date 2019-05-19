@@ -13,7 +13,8 @@
 #define DB_Good "../goods.db"
 #define CMD 999
 #define LOGIN 1
-#define VERSION "V1.1.2"
+#define VERSION "V1.1.3"
+#define UNLOGIN "unlogin"
 
 int YN(void);//输入y返回1，n返回0
 int click_password(char[], char[]);//检查两次密码是否相同,相同返回1
@@ -22,4 +23,5 @@ int login(char[], char []);//登录成功返回1，失败返回2
 int regist(User, char [], char [], char []);//注册成功返回1，失败返回0
 int users(void);//列出所有用户信息
 int goods(void);//列出所有商品信息
+int show_head(char username[]);//输出界面，username为UNLOGIN时不输出用户
 #endif //APP_MODEL_H

@@ -10,12 +10,7 @@
 
 int m31_show_window(User user) {
     int cmd = CMD;
-    system("CLS");
-    printf("当前用户：%s", user.username);
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(user.username);
     printf("个人资料：\n");
     printf("     姓名：%s", user.username);
     printf("\n     密保问题：%s", user.question);

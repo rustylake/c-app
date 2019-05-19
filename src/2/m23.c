@@ -27,11 +27,7 @@ int m23_click_question(User *user, char username[]) {
 
 int m23_show_window() {
     char username[128];
-    system("CLS");
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(UNLOGIN);
     printf("请输入用户名\n");
     fflush(stdin);
     gets(username);

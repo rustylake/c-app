@@ -10,12 +10,7 @@
 #include "4/m42.h"
 int m4_show_window(char username[]) {
     int cmd = CMD;
-    system("CLS");
-    printf("欢迎，管理员：%s", username);
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(username);
     printf("请选择要执行的操作：\n");
     printf("     用户管理：1");
     printf("\n     商品管理：2");

@@ -14,33 +14,15 @@
 #include "model/model.h"
 
 int m1_window_show() {
-    system("CLS");
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                        %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
-    printf("    帮助页面\n");
-    printf("    1  。。。。。\n");
-    printf("    2  。。。。。\n");
-    printf("    1  。。。。。\n");
-    printf("    1  。。。。。\n");
-    printf("    1  。。。。。\n");
-    printf("    1  。。。。。\n");
+    show_head(UNLOGIN);
+    system("..\\help.png");
+    fflush(stdin);
     printf("    按任意键退出\n");
     getch();
     return 0;
 }
 
-int m1_call_back() {
-    return 0;
-}
-
 int m1() {
-    int cmd = CMD;
-    while (1) {
-        m1_window_show();
-        m1_call_back();
-        break;
-    }
+    m1_window_show();
     return 0;
 }

@@ -9,12 +9,7 @@
 
 int m3_show_window(char username[]) {
     int cmd = CMD;
-    system("CLS");
-    printf("当前用户：%s", username);
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(username);
     printf("请选择要执行的操作：\n");
     printf("     购买商品：1");
     printf("\n     个人资料：2");

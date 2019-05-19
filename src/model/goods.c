@@ -13,7 +13,7 @@ int Good_init(Good *good, char name[128], int count, int inprize, int outprize) 
     good->count = count;
     good->total = good->count * good->inprize;
     good->outprize = outprize;
-    int id = -1;
+    int id;
     Good good1;
     FILE *fp = NULL;
     fp = fopen(DB_Good, "ab+");

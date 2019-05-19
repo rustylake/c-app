@@ -11,12 +11,7 @@
 
 int m41_show_window(char username[]) {
     int cmd = CMD;
-    system("CLS");
-    printf("当前用户：%s", username);
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(username);
     users();
     printf("请选择要执行的操作：\n");
     printf("     修改用户信息：1");

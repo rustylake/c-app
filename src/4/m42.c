@@ -51,12 +51,7 @@ int m42_add_goods(void) {
 
 int m42_show_window(char username[]) {
     int cmd = CMD;
-    system("CLS");
-    printf("当前用户：%s", username);
-    printf("\n\n\n\n");
-    printf("                                                  商店零售管理系统\n");
-    printf("                                                         %s\n", VERSION);
-    printf("------------------------------------------------------------------------------------------------------------------------\n");
+    show_head(username);
     printf("请选择要执行的操作：\n");
     printf("     查看所有商品：1\n");
     printf("     添加商品：2\n");
@@ -102,7 +97,7 @@ int m42(char username[]) {
     while (1) {
         cmd = m42_show_window(username);
         m42_call_back(cmd, username);
-        if (M22_EXIT == cmd)break;
+        if (APP_M42_EXIT == cmd)break;
     }
     return 0;
 }
