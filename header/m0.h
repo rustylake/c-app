@@ -9,6 +9,8 @@
 #define APP_M0_LOGIN 2
 #define APP_M0_ADMIN 3
 #define APP_M0_TEST 4
+
+
 int m0();
 
 #endif //APP_M0_H

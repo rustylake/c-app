@@ -1,11 +1,12 @@
 //
 // Created by pengy on 2019/5/3.
 //
-
-#include "model/goods.h"
-#include "model/model.h"
 #include <stdio.h>
 #include <direct.h>
+
+#include "model/model.h"
+#include "model/goods.h"
+
 
 int Good_init(Good *good, char name[128], int count, int inprize, int outprize) {
     strcpy(good->name, name);
@@ -22,17 +23,19 @@ int Good_init(Good *good, char name[128], int count, int inprize, int outprize) 
         return Good_FAIL;
     }
     if (!fread(&good1, sizeof(Good), 1, fp)) {
-        good1.id = 0;
-        good1.outprize = 0;
-        good1.count = 0;
-        good1.inprize = 0;
-        strcpy(good1.name, "第一个商品");
-        fwrite(&good1, sizeof(Good), 1, fp);
+        good->id = 1;
+        //        good1.id = 0;
+//        good1.outprize = 0;
+//        good1.count = 0;
+//        good1.inprize = 0;
+//        strcpy(good1.name, "第一个商品");
+//        fwrite(&good1, sizeof(Good), 1, fp);
+    } else {
+        fseek(fp, sizeof(Good) * -1, SEEK_END);
+        fread(&good1, sizeof(Good), 1, fp);
+        good->id = good1.id + 1;
     }
-    fseek(fp, sizeof(Good) * -1, SEEK_END);
-    fread(&good1, sizeof(Good), 1, fp);
     fclose(fp);
-    good->id = good1.id + 1;
     return good->id;
 }
 
@@ -82,6 +85,8 @@ int Good_change(int id, int c, int number) {
                 case Good_OUTPRIZE:
                     Good.outprize = number;
                     break;
+                default:
+                    return Good_FAIL;
             }
             Good.total = Good_INPRIZE * Good_COUNT;
             fflush(stdin);
@@ -102,7 +107,9 @@ int Good_change_Name(int id, char name[]) {
         printf("文件打开失败，请联系管理员");
         return Good_FAIL;
     }
-    while (fread(&Good, sizeof(Good), 1, fp)) {
+    if (fseek(fp, sizeof(Good) * (id - 1), SEEK_SET) == -1)
+        return Good_FAIL;
+    fread(&Good, sizeof(Good), 1, fp);
         if (Good.id == id) {
             fseek(fp, sizeof(Good) * (-1), SEEK_CUR);
             strcpy(Good.name, name);
@@ -110,7 +117,7 @@ int Good_change_Name(int id, char name[]) {
             fwrite(&Good, sizeof(Good), 1, fp);
             fclose(fp);
             return 1;
-        }
+
     }
     fclose(fp);
     return Good_FAIL;
@@ -140,7 +147,7 @@ int Good_view(Good *good, int id) {
         printf("文件打开失败，请联系管理员");
         return Good_FAIL;
     }
-    if (fseek(fp, sizeof(Good) * id, SEEK_SET) == -1)
+    if (fseek(fp, sizeof(Good) * (id - 1), SEEK_SET) == -1)
         return Good_FAIL;
     fread(good, sizeof(Good), 1, fp);
     fclose(fp);

@@ -4,12 +4,14 @@
 
 #ifndef APP_GOODS_H
 #define APP_GOODS_H
+
 #define Good_FAIL 0
 #define Good_NAME 20
 #define Good_COUNT 30
 #define Good_INPRIZE 40
 #define GOOD_TOTLE 50
 #define Good_OUTPRIZE 60
+
 struct Good {
     int id;
     char name[128];

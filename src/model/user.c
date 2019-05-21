@@ -1,12 +1,12 @@
 //
 // Created by pengy on 2019/4/21.
 //
-
-#include "model/user.h"
-#include "model/model.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <direct.h>
+
+#include "model/user.h"
+#include "model/model.h"
 
 int User_add(User user) {
     FILE *fp = NULL;

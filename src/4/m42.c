@@ -1,13 +1,13 @@
 //
 // Created by pengy on 2019/5/12.
 //
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 
-#include "4/m42.h"
 #include "model/model.h"
+#include "model/goods.h"
+#include "4/m42.h"
 
 int isTheDemo() {
     printf("请输入商品代码\n");

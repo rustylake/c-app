@@ -7,9 +7,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "4/m41.h"
 #include "model/model.h"
 #include "model/user.h"
+#include "4/m41.h"
 
 int m41_show_window(char username[]) {
     int cmd = CMD;

@@ -6,15 +6,15 @@
 //
 //²Ù×÷
 //
-#include "2/m23.h"
-#include "2/m2.h"
-#include "2/m21.h"
-#include "2/m22.h"
-#include "3/m3.h"
-#include "model/model.h"
-
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "2/m21.h"
+#include "2/m22.h"
+#include "2/m23.h"
+#include "3/m3.h"
+#include "model/model.h"
+#include "2/m2.h"
 
 int m2_show_window(int cmd) {
     show_head(UNLOGIN);

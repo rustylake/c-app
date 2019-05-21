@@ -1,12 +1,12 @@
 //
 // Created by pengy on 2019/5/12.
 //
-
 #include <stdio.h>
 #include <stdlib.h>
-#include "3/m31.h"
+
 #include "model/model.h"
 #include "model/user.h"
+#include "3/m31.h"
 
 int m31_show_window(User user) {
     int cmd = CMD;

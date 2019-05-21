@@ -6,12 +6,14 @@
 //
 //接口及作用请参照头文件
 //操作
+
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "1/m1.h"
 #include "model/model.h"
+#include "1/m1.h"
+
 
 int m1_window_show() {
     show_head(UNLOGIN);

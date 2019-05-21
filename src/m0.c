@@ -10,12 +10,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "m0.h"
 #include "1/m1.h"
 #include "2/m2.h"
 #include "4/m40.h"
 #include "model/model.h"
 #include "test.h"
+#include "m0.h"
+
 
 int m0_window_show() {
     int cmd = CMD;

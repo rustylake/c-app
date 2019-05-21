@@ -3,9 +3,10 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "3/m3.h"
+
 #include "model/model.h"
 #include "3/m31.h"
+#include "3/m3.h"
 
 int m3_show_window(char username[]) {
     int cmd = CMD;

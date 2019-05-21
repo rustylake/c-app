@@ -6,14 +6,16 @@
 //
 //²Ù×÷
 //
+
+#include "2/m22.h"
+#include "3/m3.h"
+#include "model/model.h"
+
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "2/m21.h"
-#include "2/m22.h"
-#include <3/m3.h>
-#include "model/model.h"
+
 
 static char username[256];
 static char password[256];

@@ -1,14 +1,17 @@
 //
 // Created by pengy on 2019/4/2.
 //
-
-#include "model/model.h"
-
+#include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
 #include <direct.h>
+
+#include "2/m22.h"
+#include "model/user.h"
+#include "model/goods.h"
+#include "model/model.h"
 
 int YN() {
     int cmd = 0;
@@ -119,4 +122,15 @@ int show_head(char username[]) {
     printf("                                                %s\n", VERSION);
     printf("--------------------------------------------------------------------------------------------------\n");
     return 0;
+}
+
+int get_current_time(char times[]) {
+    time_t now;
+    struct tm *tm_now;
+    time(&now);
+    tm_now = localtime(&now);
+    sprintf(times, "%04d-%02d-%02d %02d:%02d:%02d", tm_now->tm_year + 1900, tm_now->tm_mon + 1, tm_now->tm_mday,
+            tm_now->tm_hour, tm_now->tm_min, tm_now->tm_sec);
+//    printf("%s",times);
+    return 1;
 }

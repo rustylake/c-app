@@ -4,7 +4,9 @@
 
 #ifndef APP_M40_H
 #define APP_M40_H
+
 #define APP_M40_EXIT 0
+
 
 int m40();
 

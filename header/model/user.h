@@ -4,10 +4,12 @@
 
 #ifndef APP_USER_H
 #define APP_USER_H
+
 #define USER_FAIL 2
 #define USER_PASSWORD 20
 #define USER_QUESTION 30
 #define USER_AN 40
+
 
 struct User {
     char username[128];
@@ -16,8 +18,6 @@ struct User {
     char an[128];
 };
 typedef struct User User;
-
-/***********************************************/
 
 int User_clone(User *user1, User *user2);//将user2复制到user1 成功返回1 失败返回0
 int User_add(User);//增加用户

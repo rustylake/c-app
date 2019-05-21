@@ -1,13 +1,14 @@
 //
 // Created by pengy on 2019/5/12.
 //
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "model/model.h"
-#include "4/m4.h"
+
 #include "4/m41.h"
 #include "4/m42.h"
+#include "4/m4.h"
+
 int m4_show_window(char username[]) {
     int cmd = CMD;
     show_head(username);
