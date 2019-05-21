@@ -10,6 +10,7 @@
 #define APP_M42_DELATE 3
 #define APP_M42_CHANGE 4
 #define APP_M42_SCARCH 5
+#define APP_M42_SCARCHDEMO 6
 #define APP_M42_EXIT 0
 
 

@@ -134,10 +134,11 @@ int Good_getId(char name[]) {
     while (fread(&Good, sizeof(Good), 1, fp)) {
         if (click_password(Good.name, name)) {
             fclose(fp);
-            return 1;
+            return Good.id;
         }
     }
-    return Good.id;
+    fclose(fp);
+    return Good_FAIL;
 }
 
 int Good_view(Good *good, int id) {

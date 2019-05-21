@@ -24,7 +24,21 @@ int m42_change_goods(void) {
     Good good;
     Good_view(&good, id);
     printf("商品信息：\n");
-    printf("商品名称：进价：售价：库存：总价：");
+    printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n", good.name, good.inprize,
+           good.outprize, good.count, good.total);
+    printf("请输入修改项目：\n");
+    printf("        修改名称：1\n");
+    printf("        修改进价：2\n");
+    printf("        修改售价：3\n");
+    printf("        修改库存：4\n");
+    printf("        取消：0\n");
+    int cmd;
+    while (!scanf("%d", &cmd))
+        fflush(stdin);
+    switch (cmd) {//我就算是多写个switch也不会去改宏定义的  ->_<-
+        case 1:
+            printf("请输入新名称")
+    }
 }
 
 int m42_add_goods(void) {
@@ -58,6 +72,7 @@ int m42_show_window(char username[]) {
     printf("     删除商品：3\n");
     printf("     更改商品信息：4\n");
     printf("     商品查询：5\n");
+    printf("     查询商品代码：6\n");
     printf("     退出：0\n");
     while (!scanf("%d", &cmd))
         fflush(stdin);
@@ -87,6 +102,15 @@ int m42_call_back(int cmd, char username[]) {
                                       good.outprize, good.count, good.total) : printf("商品不存在！\n");
         fflush(stdin);
         printf("按任意键继续");
+        getch();
+    }
+    if (cmd == APP_M42_SCARCHDEMO) {
+        printf("请输入商品名称：\n");
+        char name[128];
+        fflush(stdin);
+        gets(name);
+        printf("\n该商品代码为：%d", Good_getId(name));
+        printf("\n按任意键继续\n");
         getch();
     }
     return cmd;

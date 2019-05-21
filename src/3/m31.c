@@ -22,12 +22,20 @@ int m31_show_window(User user) {
     return cmd;
 }
 
-int m31_call_back(int cmd) {
-    if (cmd == APP_M31_ANSWER) {
-        //
-    }
+int m31_call_back(int cmd, User user) {
     if (cmd == APP_M31_QUESTION) {
-        //
+        printf("请输入新的密保问题：\n");
+        char question[128];
+        fflush(stdin);
+        gets(question);
+        User_change(user.username, USER_QUESTION, question);
+    }
+    if (cmd == APP_M31_ANSWER) {
+        printf("请输入新的问题答案：\n");
+        char question[128];
+        fflush(stdin);
+        gets(question);
+        User_change(user.username, USER_AN, question);
     }
     return cmd;
 }
@@ -35,10 +43,10 @@ int m31_call_back(int cmd) {
 int m31(char username[]) {
     int cmd = CMD;
     User user;
-    User_scarch(&user, username);
     while (1) {
+        User_scarch(&user, username);
         cmd = m31_show_window(user);
-        m31_call_back(cmd);
+        m31_call_back(cmd, user);
         if (APP_M31_EXIT == cmd)break;
     }
     return 0;
