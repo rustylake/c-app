@@ -22,7 +22,11 @@ int isTheDemo() {
 int m42_change_goods(void) {
     int id = isTheDemo();
     Good good;
-    Good_view(&good, id);
+    if (Good_view(&good, id) == Good_FAIL) {
+        printf("商品不存在");
+        return 0;
+    }
+    int cmd = CMD;
     printf("商品信息：\n");
     printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n", good.name, good.inprize,
            good.outprize, good.count, good.total);
@@ -32,13 +36,39 @@ int m42_change_goods(void) {
     printf("        修改售价：3\n");
     printf("        修改库存：4\n");
     printf("        取消：0\n");
-    int cmd;
-    while (!scanf("%d", &cmd))
-        fflush(stdin);
-    switch (cmd) {//我就算是多写个switch也不会去改宏定义的  ->_<-
-        case 1:
-            printf("请输入新名称")
+    while (cmd > 4 || cmd < 0) {
+        while (!scanf("%d", &cmd))
+            fflush(stdin);
     }
+    switch (cmd) {//我就算是多写个switch也不会去改宏定义的  ^-^_^-^
+        case 1:
+            printf("请输入新名称");
+            fflush(stdin);
+            char new[128];
+            gets(new);
+            Good_change_Name(good.id, new);
+            return 1;
+        case 2:
+            cmd = Good_INPRIZE;
+            break;
+        case 3:
+            cmd = Good_OUTPRIZE;
+            break;
+        case 4:
+            cmd = Good_COUNT;
+            break;
+        default:
+            return 0;
+    }
+    int new;
+    do {
+        printf("请输入新的数值");
+        fflush(stdin);
+        scanf("%d", &new);
+    } while (new < 0);
+    Good_change(good.id, cmd, new);
+    printf("修改成功\n");
+    return 1;
 }
 
 int m42_add_goods(void) {
@@ -58,9 +88,13 @@ int m42_add_goods(void) {
         fflush(stdin);
     Good good;
     Good_init(&good, name, 0, inprize, outprize);
-    Good_add(good) ? printf("\n商品添加成功") : printf("\n商品添加失败");
-    getch();
-    printf("\n按任意键继续");
+    if (Good_add(good)) {
+        printf("\n商品添加成功");
+        return 1;
+    } else {
+        printf("\n商品添加失败");
+        return 0;
+    }
 }
 
 int m42_show_window(char username[]) {
@@ -82,9 +116,6 @@ int m42_show_window(char username[]) {
 int m42_call_back(int cmd, char username[]) {
     if (cmd == APP_M42_LIST) {
         goods();
-        fflush(stdin);
-        printf("\n按任意键继续");
-        getch();
     }
     if (cmd == APP_M42_ADD) {
         m42_add_goods();
@@ -93,16 +124,13 @@ int m42_call_back(int cmd, char username[]) {
         //删除
     }
     if (cmd == APP_M42_CHANGE) {
-        //更改
+        m42_change_goods();
     }
     if (cmd == APP_M42_SCARCH) {
         int id = isTheDemo();
         Good good;
         Good_view(&good, id) ? printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n", good.name, good.inprize,
                                       good.outprize, good.count, good.total) : printf("商品不存在！\n");
-        fflush(stdin);
-        printf("按任意键继续");
-        getch();
     }
     if (cmd == APP_M42_SCARCHDEMO) {
         printf("请输入商品名称：\n");
@@ -110,9 +138,10 @@ int m42_call_back(int cmd, char username[]) {
         fflush(stdin);
         gets(name);
         printf("\n该商品代码为：%d", Good_getId(name));
-        printf("\n按任意键继续\n");
-        getch();
     }
+    printf("\n按任意键继续\n");
+    fflush(stdin);
+    getch();
     return cmd;
 }
 

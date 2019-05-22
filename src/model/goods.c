@@ -88,7 +88,7 @@ int Good_change(int id, int c, int number) {
                 default:
                     return Good_FAIL;
             }
-            Good.total = Good_INPRIZE * Good_COUNT;
+            Good.total = Good.inprize * Good.count;
             fflush(stdin);
             fwrite(&Good, sizeof(Good), 1, fp);
             fclose(fp);

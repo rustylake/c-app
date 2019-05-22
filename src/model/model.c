@@ -104,7 +104,7 @@ int goods(void) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
     }
-    printf("商品代号     名  称      单  价       售  价       数  量       总  价\n");
+    printf("商品代号     名  称      售  价       进  价       数  量       总  价\n");
     while (fread(&good, sizeof(Good), 1, fp)) {
         printf("   %-2d      %-10.10s       %-3d          %-3d          %-3d          %-3d\n", good.id, good.name,
                good.outprize, good.inprize, good.count, good.total);
