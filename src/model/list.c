@@ -16,7 +16,7 @@ int List_init(List *list, char username[]) {
     get_current_time(time);
     strcpy(list->time, time);
     list->count = 0;
-    return 0;
+    return LIST_SUCCESS;
 }
 
 int List_add(List list) {
@@ -24,39 +24,39 @@ int List_add(List list) {
     fp = fopen(DB_LIST, "ab+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
-        return 0;
+        return LIST_FAIL;
     }
     fwrite(&list, sizeof(list), 1, fp);
     fclose(fp);
-    return 1;
+    return LIST_SUCCESS;
 }
 
 int Good_add_list(List *list, Good *good, int counts) {//订单  商品  添加的商品数目
     for (int i = 0; i < list->count; i++) {
         if (list->good[i].id == good->id) {
             list->good[i].count += counts;
-            return 2;
+            return LIST_SUCCESS;
         }
     }
     Good_clone(&(list->good[list->count]), good);
     list->count++;
-    return 1;
+    return LIST_SUCCESS;
 }
 
-int Good_delate_list(List *list, Good good) {
-    if (list->good[19].id == good.id) {
-        Good *good1 = (Good *) malloc(sizeof(good));
-        Good_clone(&list->good[20], good1);
+int Good_delate_list(List *list, int id) {
+    if (list->good[list->count - 1].id == id) {
+        list->count--;
     }
-    for (int i = 0; i < 19; i++) {
-        if (list->good[i].id == good.id) {
-            for (int j = i; j < 19; j++) {
+    for (int i = 0; i < list->count; i++) {
+        if (list->good[i].id == id) {
+            for (int j = i; j < list->count; j++) {
                 Good_clone(&list->good[j], &list->good[j + 1]);
             }
-            return 1;
+            list->count--;
+            return LIST_SUCCESS;
         }
     }
-    return 0;
+    return LIST_FAIL;
 }
 
 int List_scarch(List *list, char username[]) {
@@ -64,15 +64,15 @@ int List_scarch(List *list, char username[]) {
     fp = fopen(DB_USER, "ab+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
-        return USER_FAIL;
+        return LIST_FAIL;
     }
     while (fread(list, sizeof(list), 1, fp)) {
         if (click_password(list->username, username)) {
             fclose(fp);
-            return 1;
+            return LIST_SUCCESS;
         }
     }
     fclose(fp);
-    return 0;
+    return LIST_FAIL;
 
 }
