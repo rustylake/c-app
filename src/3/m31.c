@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 
 #include "model/model.h"
 #include "model/user.h"
@@ -28,14 +29,24 @@ int m31_call_back(int cmd, User user) {
         char question[128];
         fflush(stdin);
         gets(question);
-        User_change(user.username, USER_QUESTION, question);
+        if (YN()) {
+            User_change(user.username, USER_QUESTION, question);
+            printf("\n修改成功");
+            printf("\n按任意键继续\n");
+            getch();
+        }
     }
     if (cmd == APP_M31_ANSWER) {
         printf("请输入新的问题答案：\n");
         char question[128];
         fflush(stdin);
         gets(question);
-        User_change(user.username, USER_AN, question);
+        if (YN()) {
+            User_change(user.username, USER_AN, question);
+            printf("\n修改成功");
+            printf("\n按任意键继续\n");
+            getch();
+        }
     }
     return cmd;
 }

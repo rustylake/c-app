@@ -137,11 +137,14 @@ int m42_call_back(int cmd, char username[]) {
         char name[128];
         fflush(stdin);
         gets(name);
-        printf("\n该商品代码为：%d", Good_getId(name));
+        int id = Good_getId(name);
+        id == Good_FAIL ? printf("\n商品不存在") : printf("\n该商品代码为：%d", id);
     }
-    printf("\n按任意键继续\n");
-    fflush(stdin);
-    getch();
+    if (cmd != 0) {
+        printf("\n按任意键继续\n");
+        fflush(stdin);
+        getch();
+    }
     return cmd;
 }
 
