@@ -12,6 +12,7 @@
 #include "model/user.h"
 #include "model/goods.h"
 #include "model/model.h"
+#include "model/list.h"
 
 int YN() {
     int cmd = 0;
@@ -131,6 +132,15 @@ int get_current_time(char times[]) {
     tm_now = localtime(&now);
     sprintf(times, "%04d-%02d-%02d %02d:%02d:%02d", tm_now->tm_year + 1900, tm_now->tm_mon + 1, tm_now->tm_mday,
             tm_now->tm_hour, tm_now->tm_min, tm_now->tm_sec);
-//    printf("%s",times);
+    return 1;
+}
+
+int List_goods_show(List list) {
+    if (list.count != 0)
+        printf("商品代号     名  称      售  价       数  量       总  价\n");
+    for (int i = 0; i < list.count; i++) {
+        printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n", list.good[i].id, list.good[i].name,
+               list.good[i].outprize, list.good[i].count, list.good[i].total);
+    }
     return 1;
 }

@@ -15,6 +15,7 @@ int List_init(List *list, char username[]) {
     char time[64];
     get_current_time(time);
     strcpy(list->time, time);
+    list->count = 0;
     return 0;
 }
 
@@ -30,17 +31,15 @@ int List_add(List list) {
     return 1;
 }
 
-int Good_add_list(List *list, Good *good, int count, int n) {//订单  商品  添加的商品数目  购物车中商品数
-    if (n > 20) {
-        return 0;
-    }
-    for (int i = 0; i < n; i++) {
+int Good_add_list(List *list, Good *good, int counts) {//订单  商品  添加的商品数目
+    for (int i = 0; i < list->count; i++) {
         if (list->good[i].id == good->id) {
-            list->good[i].count += count;
-            return 1;
+            list->good[i].count += counts;
+            return 2;
         }
     }
-    Good_clone(&list->good[n], good);
+    Good_clone(&(list->good[list->count]), good);
+    list->count++;
     return 1;
 }
 

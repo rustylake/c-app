@@ -24,12 +24,6 @@ int Good_init(Good *good, char name[128], int count, int inprize, int outprize) 
     }
     if (!fread(&good1, sizeof(Good), 1, fp)) {
         good->id = 1;
-        //        good1.id = 0;
-//        good1.outprize = 0;
-//        good1.count = 0;
-//        good1.inprize = 0;
-//        strcpy(good1.name, "第一个商品");
-//        fwrite(&good1, sizeof(Good), 1, fp);
     } else {
         fseek(fp, sizeof(Good) * -1, SEEK_END);
         fread(&good1, sizeof(Good), 1, fp);

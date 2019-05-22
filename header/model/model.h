@@ -14,6 +14,7 @@
 #define UNLOGIN "unlogin"
 
 #include "model/user.h"
+#include "model/list.h"
 
 int YN(void);//输入y返回1，n返回0
 int click_password(char[], char[]);//检查两次密码是否相同,相同返回1
@@ -24,4 +25,5 @@ int users(void);//列出所有用户信息
 int goods(void);//列出所有商品信息
 int show_head(char username[]);//输出界面，username为UNLOGIN时不输出用户
 int get_current_time(char times[64]);//得到当前时间，以字符串形式输入times中
+int List_goods_show(List list);//显示list中的所有商品
 #endif //APP_MODEL_H

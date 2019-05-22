@@ -7,6 +7,7 @@
 #include "model/model.h"
 #include "3/m31.h"
 #include "3/m3.h"
+#include "3/m32.h"
 
 int m3_show_window(char username[]) {
     int cmd = CMD;
@@ -22,7 +23,7 @@ int m3_show_window(char username[]) {
 
 int m3_call_back(int cmd, char username[]) {
     if (cmd == M3_BUY) {
-        //¹ºÂò
+        m32(username);
     }
     if (cmd == M3_MATION) {
         m31(username);
