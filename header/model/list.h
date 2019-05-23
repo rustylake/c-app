@@ -7,7 +7,6 @@
 
 #define LIST_SUCCESS 1
 #define LIST_FAIL 0
-#define NEW_GOODS_DB "../goods_1.db"
 
 #include "model/goods.h"
 

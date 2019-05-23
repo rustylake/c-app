@@ -26,4 +26,5 @@ int goods(void);//列出所有商品信息
 int show_head(char username[]);//输出界面，username为UNLOGIN时不输出用户
 int get_current_time(char times[64]);//得到当前时间，以字符串形式输入times中
 int List_goods_show(List list);//显示list中的所有商品
+int lists();//列出所有订单
 #endif //APP_MODEL_H

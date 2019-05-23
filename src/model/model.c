@@ -144,3 +144,29 @@ int List_goods_show(List list) {
     }
     return 1;
 }
+
+int lists(void) {
+    List list;
+    FILE *fp = NULL;
+    fp = fopen(DB_LIST, "rb+");
+    if (fp == NULL) {
+        printf("\n文件打开失败，请联系管理员");
+        return 0;
+    }
+    while (fread(&list, sizeof(List), 1, fp)) {
+        printf("\n顾客姓名：%s\n", list.username);
+        printf("购买时间：%s\n", list.time);
+        printf("购买商品：\n");
+        printf("商品代号     名  称      售  价       数  量       总  价\n");
+        int totle = 0;
+        for (int i = 0; i < list.count; i++) {
+            totle += list.good[i].total;
+            printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n", list.good[i].id, list.good[i].name,
+                   list.good[i].outprize, list.good[i].count, list.good[i].total);
+        }
+        printf("\n                                             合计：%4d元\n", totle);
+        printf("--------------------------------------------------------\n");
+    }
+    fclose(fp);
+    return 1;
+}

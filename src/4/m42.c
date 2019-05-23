@@ -140,7 +140,7 @@ int m42_call_back(int cmd, char username[]) {
         int id = Good_getId(name);
         id == Good_FAIL ? printf("\n商品不存在") : printf("\n该商品代码为：%d", id);
     }
-    if (cmd != 0) {
+    if (cmd > 0 && cmd <= 6) {
         printf("\n按任意键继续\n");
         fflush(stdin);
         getch();

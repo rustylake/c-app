@@ -12,10 +12,6 @@
 #include "model/list.h"
 #include "test.h"
 
-int new_db() {
-
-}
-
 int m32_add_goods(List *list) {
     int id;
     printf("\n请输入商品代码\n");
