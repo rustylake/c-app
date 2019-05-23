@@ -47,7 +47,7 @@ int m43_call_back(int cmd) {
             }
             printf("\n                                             合计：%4d元\n", totle);
         } else {
-            printf("\n未查询到用户");
+            printf("\n未查询到该顾客\n");
         }
     }
     if (cmd > 0 && cmd <= 2) {

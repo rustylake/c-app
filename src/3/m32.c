@@ -98,24 +98,29 @@ int m32_show_window(char username[], List list) {
     return cmd;
 }
 
-int m32_call_back(List *list, int *cmd) {
-    if (*cmd == 1) {
-        m32_add_goods(list);
+int m32_call_back(List *list, int cmd) {
+    if (cmd == 1) {
+        if (list->count == 20) {
+            printf("\n购物车已满\n");
+        } else {
+            m32_add_goods(list);
+        }
     }
-    if (*cmd == 2) {
+    if (cmd == 2) {
         m32_delate_goods(list);
     }
-    if (*cmd == 3) {
+    if (cmd == 3) {
         m32_all(*list);
-        *cmd = M32_TOTLE;
     }
-    if (*cmd == M32_EXIT) {
+    if (cmd == M32_EXIT) {
         system("del ..\\goods.db ");
         system("rename ..\\goods1.db goods.db");
     }
-    printf("\n按任意键继续\n");
-    fflush(stdin);
-    getch();
+    if (cmd > 0 && cmd < 4) {
+        printf("\n按任意键继续\n");
+        fflush(stdin);
+        getch();
+    }
     return 0;
 }
 
@@ -126,8 +131,8 @@ int m32(char username[]) {
     List_init(&list, username);
     while (1) {
         cmd = m32_show_window(username, list);
-        m32_call_back(&list, &cmd);
-        if (cmd == M32_EXIT || cmd == M32_TOTLE)
+        m32_call_back(&list, cmd);
+        if (cmd == M32_EXIT || cmd == 3)
             break;
     }
     return 0;
