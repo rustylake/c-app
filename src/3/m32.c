@@ -9,6 +9,7 @@
 #include "model/goods.h"
 #include "model/model.h"
 #include "model/list.h"
+#include "test.h"
 
 int m32_add_goods(List *list) {
     int id;
@@ -27,6 +28,7 @@ int m32_add_goods(List *list) {
                 fflush(stdin);
             if (counts > good.count || counts < 0) {
                 printf("购买数需小于库存\n");
+                printf("请重新输入\n");
             } else {
                 break;
             }
@@ -63,6 +65,17 @@ int m32_delate_goods(List *list) {
     return 0;
 }
 
+int m32_all(List list) {
+    if (List_add(list) == LIST_FAIL)return 0;
+    int totle = 0;
+    for (int i = 0; i < list.count; i++) {
+        totle += list.good[i].total;
+    }
+    printf("\n\n总金额为：%4d元\n", totle);
+    printf("欢迎您下次光临\n");
+    return 1;
+}
+
 int m32_show_window(char username[], List list) {
     show_head(username);
     printf("当前购物车中商品(%d/20)件\n\n", list.count);
@@ -83,15 +96,16 @@ int m32_show_window(char username[], List list) {
     return cmd;
 }
 
-int m32_call_back(List *list, int cmd) {
-    if (cmd == 1) {
+int m32_call_back(List *list, int *cmd) {
+    if (*cmd == 1) {
         m32_add_goods(list);
     }
-    if (cmd == 2) {
+    if (*cmd == 2) {
         m32_delate_goods(list);
     }
-    if (cmd == 3) {
-
+    if (*cmd == 3) {
+        m32_all(*list);
+        *cmd = M32_EXIT;
     }
     printf("\n按任意键继续\n");
     fflush(stdin);
@@ -104,8 +118,9 @@ int m32(char username[]) {
     List list;
     List_init(&list, username);
     while (1) {
+//        test();
         cmd = m32_show_window(username, list);
-        m32_call_back(&list, cmd);
+        m32_call_back(&list, &cmd);
         if (cmd == M32_EXIT)
             break;
     }
