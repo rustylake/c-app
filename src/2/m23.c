@@ -33,7 +33,7 @@ int m23_show_window() {
     fflush(stdin);
     gets(username);
     fflush(stdin);
-    m23_call_back(username) ? printf("修改成功，请重新登录\n按任意键继续") : printf("修改失败\n按任意键继续");
+    m23_call_back(username) != CMD ? printf("修改成功，请重新登录\n按任意键继续") : printf("修改失败\n按任意键继续");
     getch();
     return 0;
 }

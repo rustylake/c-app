@@ -3,6 +3,7 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <conio.h>
 
 #include "3/m32.h"
@@ -10,6 +11,10 @@
 #include "model/model.h"
 #include "model/list.h"
 #include "test.h"
+
+int new_db() {
+
+}
 
 int m32_add_goods(List *list) {
     int id;
@@ -34,8 +39,7 @@ int m32_add_goods(List *list) {
             }
         }
         if (counts != 0) {
-            good.count = counts;
-            good.total = counts * good.outprize;
+            Good_change(good.id, Good_COUNT, good.count - counts);
             Good_add_list(list, &good, counts);
             printf("购买成功\n");
         }
@@ -57,6 +61,7 @@ int m32_delate_goods(List *list) {
     for (int i = 0; i < list->count; i++) {
         if (list->good[i].id == id) {
             Good_delate_list(list, id);
+            Good_change(good.id, Good_COUNT, good.count + list->good[i].count);
             printf("删除成功\n");
             return 1;
         }
@@ -71,6 +76,7 @@ int m32_all(List list) {
     for (int i = 0; i < list.count; i++) {
         totle += list.good[i].total;
     }
+    system("del ..\\goods1.db");
     printf("\n\n总金额为：%4d元\n", totle);
     printf("欢迎您下次光临\n");
     return 1;
@@ -105,7 +111,11 @@ int m32_call_back(List *list, int *cmd) {
     }
     if (*cmd == 3) {
         m32_all(*list);
-        *cmd = M32_EXIT;
+        *cmd = M32_TOTLE;
+    }
+    if (*cmd == M32_EXIT) {
+        system("del ..\\goods.db ");
+        system("rename ..\\goods1.db goods.db");
     }
     printf("\n按任意键继续\n");
     fflush(stdin);
@@ -115,13 +125,13 @@ int m32_call_back(List *list, int *cmd) {
 
 int m32(char username[]) {
     int cmd = CMD;
+    system("copy ..\\goods.db ..\\goods1.db");
     List list;
     List_init(&list, username);
     while (1) {
-//        test();
         cmd = m32_show_window(username, list);
         m32_call_back(&list, &cmd);
-        if (cmd == M32_EXIT)
+        if (cmd == M32_EXIT || cmd == M32_TOTLE)
             break;
     }
     return 0;

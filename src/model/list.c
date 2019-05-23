@@ -35,9 +35,12 @@ int Good_add_list(List *list, Good *good, int counts) {//¶©µ¥  ÉÌÆ·  Ìí¼ÓµÄÉÌÆ·Ê
     for (int i = 0; i < list->count; i++) {
         if (list->good[i].id == good->id) {
             list->good[i].count += counts;
+            list->good[i].total = list->good[i].outprize * list->good[i].count;
             return LIST_SUCCESS;
         }
     }
+    good->count = counts;
+    good->total = good->outprize * counts;
     Good_clone(&(list->good[list->count]), good);
     list->count++;
     return LIST_SUCCESS;
