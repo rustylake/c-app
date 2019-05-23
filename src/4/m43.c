@@ -27,7 +27,28 @@ int m43_call_back(int cmd) {
         lists();
     }
     if (cmd == 2) {
-
+        printf("请输入顾客姓名：\n");
+        char name[128];
+        fflush(stdin);
+        gets(name);
+        List list;
+        if (List_scarch(&list, name) == LIST_SUCCESS) {
+            printf("\n该顾客最近一次的订单为：\n");
+            printf("\n顾客姓名：%s\n", list.username);
+            printf("购买时间：%s\n", list.time);
+            printf("购买商品：\n");
+            printf("商品代号     名  称      售  价       数  量       总  价\n");
+            int totle = 0;
+            for (int i = 0; i < list.count; i++) {
+                totle += list.good[i].total;
+                printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n", list.good[i].id,
+                       list.good[i].name,
+                       list.good[i].outprize, list.good[i].count, list.good[i].total);
+            }
+            printf("\n                                             合计：%4d元\n", totle);
+        } else {
+            printf("\n未查询到用户");
+        }
     }
     if (cmd > 0 && cmd <= 2) {
         fflush(stdin);

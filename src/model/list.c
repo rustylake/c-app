@@ -64,12 +64,12 @@ int Good_delate_list(List *list, int id) {
 
 int List_scarch(List *list, char username[]) {
     FILE *fp = NULL;
-    fp = fopen(DB_USER, "ab+");
+    fp = fopen(DB_LIST, "rb+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
         return LIST_FAIL;
     }
-    while (fread(list, sizeof(list), 1, fp)) {
+    while (fread(list, sizeof(List), 1, fp)) {
         if (click_password(list->username, username)) {
             fclose(fp);
             return LIST_SUCCESS;
