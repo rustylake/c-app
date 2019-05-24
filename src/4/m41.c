@@ -31,7 +31,11 @@ int m41_call_back(int cmd) {
         gets(username);
         User user;
         User_scarch(&user, username);
-        printf("\n姓名：%s   密码：%s   问题：%s  答案：%s\n", user.username, user.password, user.question, user.an);
+        printf("\n姓名：%s   密码：%s   问题：%s  答案：%s\n",
+               user.username,
+               user.password,
+               user.question,
+               user.an);
         printf("选择要更改的项目：0.取消\n                  1.密码\n                  2.问题\n                  3.答案\n");
         int n = 0;
         while (scanf("%d", &n) ? !(n <= 3 && n >= 0) : 1)

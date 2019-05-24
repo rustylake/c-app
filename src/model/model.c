@@ -34,13 +34,13 @@ int YN() {
     return cmd;
 }
 
-int click_username(User user, char username[]) {
+int click_username(User user, char username[]) {//User封装后发现好像没什么用
     if (User_scarch(&user, username))
         return 0;
     return 1;
 }
 
-int click_password(char password1[], char password2[]) {
+int click_password(char password1[], char password2[]) {//也感觉没什么用
     return !strcmp(password1, password2);
 }
 
@@ -91,7 +91,11 @@ int users(void) {
     }
     printf("    姓名    密码    问题    答案\n");
     while (fread(&user, sizeof(User), 1, fp)) {
-        printf("     %s       %s       %s       %s\n", user.username, user.password, user.question, user.an);
+        printf("     %s       %s       %s       %s\n",
+               user.username,
+               user.password,
+               user.question,
+               user.an);
     }
 
     return 1;
@@ -107,8 +111,13 @@ int goods(void) {
     }
     printf("商品代号     名  称      售  价       进  价       数  量       总  价\n");
     while (fread(&good, sizeof(Good), 1, fp)) {
-        printf("   %-2d      %-10.10s       %-3d          %-3d          %-3d          %-3d\n", good.id, good.name,
-               good.outprize, good.inprize, good.count, good.total);
+        printf("   %-2d      %-10.10s       %-3d          %-3d          %-3d          %-3d\n",
+               good.id,
+               good.name,
+               good.outprize,
+               good.inprize,
+               good.count,
+               good.total);
     }
     fclose(fp);
     return 1;
@@ -139,8 +148,12 @@ int List_goods_show(List list) {
     if (list.count != 0)
         printf("商品代号     名  称      售  价       数  量       总  价\n");
     for (int i = 0; i < list.count; i++) {
-        printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n", list.good[i].id, list.good[i].name,
-               list.good[i].outprize, list.good[i].count, list.good[i].total);
+        printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n",
+               list.good[i].id,
+               list.good[i].name,
+               list.good[i].outprize,
+               list.good[i].count,
+               list.good[i].total);
     }
     return 1;
 }
@@ -161,8 +174,12 @@ int lists(void) {
         int totle = 0;
         for (int i = 0; i < list.count; i++) {
             totle += list.good[i].total;
-            printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n", list.good[i].id, list.good[i].name,
-                   list.good[i].outprize, list.good[i].count, list.good[i].total);
+            printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n",
+                   list.good[i].id,
+                   list.good[i].name,
+                   list.good[i].outprize,
+                   list.good[i].count,
+                   list.good[i].total);
         }
         printf("\n                                             合计：%4d元\n", totle);
         printf("--------------------------------------------------------\n");

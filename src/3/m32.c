@@ -11,7 +11,6 @@
 #include "model/goods.h"
 #include "model/model.h"
 #include "model/list.h"
-#include "test.h"
 
 int m32_add_goods(List *list) {
     int id;
@@ -23,7 +22,10 @@ int m32_add_goods(List *list) {
     if (Good_view(&good, id) == Good_FAIL)
         printf("商品不存在\n");
     else {
-        printf("商品名称：%-5s  售价：%-3d  库存：%-3d\n  ", good.name, good.outprize, good.count);
+        printf("商品名称：%-5s  售价：%-3d  库存：%-3d\n  ",
+               good.name,
+               good.outprize,
+               good.count);
         printf("请输入购买数量：\n");
         while (1) {
             while (!scanf("%d", &counts))
@@ -36,7 +38,9 @@ int m32_add_goods(List *list) {
             }
         }
         if (counts != 0) {
-            Good_change(good.id, Good_COUNT, good.count - counts);
+            Good_change(good.id,
+                        Good_COUNT,
+                        good.count - counts);
             Good_add_list(list, &good, counts);
             printf("购买成功\n");
         }
@@ -58,7 +62,9 @@ int m32_delate_goods(List *list) {
     for (int i = 0; i < list->count; i++) {
         if (list->good[i].id == id) {
             Good_delate_list(list, id);
-            Good_change(good.id, Good_COUNT, good.count + list->good[i].count);
+            Good_change(good.id,
+                        Good_COUNT,
+                        good.count + list->good[i].count);
             printf("删除成功\n");
             return 1;
         }

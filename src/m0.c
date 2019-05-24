@@ -12,6 +12,7 @@
 
 #include "1/m1.h"
 #include "2/m2.h"
+#include "3/m32.h"
 #include "4/m4.h"
 #include "model/model.h"
 #include "test.h"
@@ -25,7 +26,7 @@ int m0_window_show() {
     printf("    1  帮助页面\n");
     printf("    2  登录系统\n");
     printf("    3  管理系统\n");
-    printf("    4  测试项目\n");
+    printf("    4  游客购买\n");
     printf("    0  退出\n");
     while (!scanf("%d", &cmd))fflush(stdin);
     return cmd;
@@ -41,10 +42,12 @@ int m0_call_back(int cmd) {
     if (cmd == APP_M0_ADMIN) {//登录
         m40();
     }
+    if (cmd == APP_M0_BUY) {//测试
+        m32("游客");
+    }
     if (cmd == APP_M0_TEST) {//测试
         test();
     }
-
     return cmd;
 }
 

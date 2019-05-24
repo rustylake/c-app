@@ -28,8 +28,12 @@ int m42_change_goods(void) {
     }
     int cmd = CMD;
     printf("商品信息：\n");
-    printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n", good.name, good.inprize,
-           good.outprize, good.count, good.total);
+    printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n",
+           good.name,
+           good.inprize,
+           good.outprize,
+           good.count,
+           good.total);
     printf("请输入修改项目：\n");
     printf("        修改名称：1\n");
     printf("        修改进价：2\n");
@@ -129,8 +133,13 @@ int m42_call_back(int cmd, char username[]) {
     if (cmd == APP_M42_SCARCH) {
         int id = isTheDemo();
         Good good;
-        Good_view(&good, id) ? printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n", good.name, good.inprize,
-                                      good.outprize, good.count, good.total) : printf("商品不存在！\n");
+        Good_view(&good, id) ?
+        printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n",
+               good.name,
+               good.inprize,
+               good.outprize,
+               good.count,
+               good.total) : printf("商品不存在！\n");
     }
     if (cmd == APP_M42_SCARCHDEMO) {
         printf("请输入商品名称：\n");

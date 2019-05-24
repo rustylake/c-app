@@ -41,9 +41,12 @@ int m43_call_back(int cmd) {
             int totle = 0;
             for (int i = 0; i < list.count; i++) {
                 totle += list.good[i].total;
-                printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n", list.good[i].id,
+                printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n",
+                       list.good[i].id,
                        list.good[i].name,
-                       list.good[i].outprize, list.good[i].count, list.good[i].total);
+                       list.good[i].outprize,
+                       list.good[i].count,
+                       list.good[i].total);
             }
             printf("\n                                             ºÏ¼Æ£º%4dÔª\n", totle);
         } else {
