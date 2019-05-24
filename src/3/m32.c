@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <windows.h>
 
 #include "3/m32.h"
 #include "model/goods.h"
@@ -124,16 +125,32 @@ int m32_call_back(List *list, int cmd) {
     return 0;
 }
 
+BOOL HandlerRoutine(int CtrlType) {
+    switch (CtrlType) {
+        case CTRL_CLOSE_EVENT: //用户要关闭Console了
+            system("del ..\\goods.db ");
+            system("rename ..\\goods1.db goods.db");
+            break;
+    }
+    return 0;
+}
+
 int m32(char username[]) {
     int cmd = CMD;
     system("copy ..\\goods.db ..\\goods1.db");
+    BOOL bRet;
+    bRet = SetConsoleCtrlHandler((PHANDLER_ROUTINE) &HandlerRoutine, TRUE);
+    if (bRet == FALSE)
+        printf("\n钩子安装失败，请在退出购物车模块后再关闭程序！\n\n");
     List list;
     List_init(&list, username);
     while (1) {
         cmd = m32_show_window(username, list);
         m32_call_back(&list, cmd);
-        if (cmd == M32_EXIT || cmd == 3)
+        if (cmd == M32_EXIT || cmd == 3) {
+            SetConsoleCtrlHandler((PHANDLER_ROUTINE) &HandlerRoutine, FALSE);
             break;
+        }
     }
     return 0;
 }
