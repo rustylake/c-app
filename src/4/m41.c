@@ -63,7 +63,7 @@ int m41_call_back(int cmd) {
         char new[128];
         fflush(stdin);
         gets(new);
-        if (!YN())return 0;
+        if (!YN("确定要修改吗"))return 0;
         User_change(username, n, new);
         printf("\n修改成功\n按任意键继续");
         fflush(stdin);

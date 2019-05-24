@@ -15,7 +15,8 @@ int m31_show_window(User user) {
     printf("个人资料：\n");
     printf("     姓名：%s", user.username);
     printf("\n     密保问题：%s", user.question);
-    printf("\n     问题答案：%s\n", user.an);
+    printf("\n     问题答案：%s", user.an);
+    printf("\n     当前积分：%4d\n", user.point);
     printf("\n修改问题：1");
     printf("\n修改答案：2");
     printf("\n返回：0\n");
@@ -29,7 +30,7 @@ int m31_call_back(int cmd, User user) {
         char question[128];
         fflush(stdin);
         gets(question);
-        if (YN()) {
+        if (YN("确定要修改吗")) {
             User_change(user.username, USER_QUESTION, question);
             printf("\n修改成功");
             printf("\n按任意键继续\n");
@@ -41,7 +42,7 @@ int m31_call_back(int cmd, User user) {
         char question[128];
         fflush(stdin);
         gets(question);
-        if (YN()) {
+        if (YN("确定要修改吗")) {
             User_change(user.username, USER_AN, question);
             printf("\n修改成功");
             printf("\n按任意键继续\n");

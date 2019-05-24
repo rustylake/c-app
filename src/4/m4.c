@@ -33,7 +33,7 @@ int m40_show_window(int cmd) {
     fflush(stdin);
     gets(password);
     fflush(stdin);
-    cmd = YN();
+    cmd = YN("È·¶¨ÒªµÇÂ½Âð");
     return cmd;
 }
 

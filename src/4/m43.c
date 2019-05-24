@@ -49,6 +49,8 @@ int m43_call_back(int cmd) {
                        list.good[i].total);
             }
             printf("\n                                             合计：%4d元\n", totle);
+            printf("                                               优惠：%4d元\n", list.money);
+            printf("                                               实付：%4d元\n", totle - list.money);
         } else {
             printf("\n未查询到该顾客\n");
         }

@@ -16,7 +16,7 @@
 #include "model/user.h"
 #include "model/list.h"
 
-int YN(void);//输入y返回1，n返回0
+int YN(char[]);//输入y返回1，n返回0
 int click_password(char[], char[]);//检查两次密码是否相同,相同返回1
 int click_username(User, char[]);//检验用户名是否存在,存在返回0，不存在返回1
 int login(char[], char []);//登录成功返回1，失败返回2

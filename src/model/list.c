@@ -16,6 +16,7 @@ int List_init(List *list, char username[]) {
     get_current_time(time);
     strcpy(list->time, time);
     list->count = 0;
+    list->money = 0;
     return LIST_SUCCESS;
 }
 

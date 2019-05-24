@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
+#include <math.h>
 
 #include "3/m32.h"
 #include "model/goods.h"
@@ -74,13 +75,39 @@ int m32_delate_goods(List *list) {
 }
 
 int m32_all(List list) {
-    if (List_add(list) == LIST_FAIL)return 0;
     int totle = 0;
     for (int i = 0; i < list.count; i++) {
         totle += list.good[i].total;
     }
+    int money = 0;
+    User user;
+    if (User_scarch(&user, list.username)) {//这里的确不应该嵌套这么多层的，但是我三元表达式用不好
+        printf("当前积分：%4d", user.point);
+        if (user.point >= 100) {
+            if (YN("要使用积分抵消一部分付款吗")) {
+                money = user.point / 100;
+                if (money > totle) {
+                    money = totle;
+                    user.point -= money * 100;
+                } else {
+                    user.point %= 100;
+                }
+            } else {
+                user.point += totle;
+            }
+        } else {
+            user.point += totle;
+        }
+        User_change_point(user.username, user.point);
+        list.money = money;
+    } else {
+        strcpy(user.username, UNLOGIN);
+    }
+    List_add(list);
     system("del ..\\goods1.db");
     printf("\n\n总金额为：%4d元\n", totle);
+    printf("积分抵消:  %4d元\n", money);
+    printf("实付款：  %4d元\n", totle - money);
     printf("欢迎您下次光临\n");
     return 1;
 }
@@ -93,7 +120,8 @@ int m32_show_window(char username[], List list) {
     for (int i = 0; i < list.count; i++) {
         totle += list.good[i].total;
     }
-    printf("                                             合计：%4d元\n", totle);
+    printf("                                             合计：%4d元\n\n", totle);
+    printf("---------------------------------------------------------\n");
     printf("添加商品：1\n");
     printf("删除商品：2\n");
     printf("    结算：3\n");
@@ -117,6 +145,7 @@ int m32_call_back(List *list, int cmd) {
         m32_delate_goods(list);
     }
     if (cmd == 3) {
+        printf("\n---------------------------------------------------------\n");
         m32_all(*list);
     }
     if (cmd == M32_EXIT) {

@@ -28,7 +28,7 @@ int m22_window_show(int cmd) {
     printf("\n    请确认密码\n");
     gets(password2);
     fflush(stdin);
-    cmd = YN();
+    cmd = YN("确定要注册吗");
     cmd = m22_call_back(cmd, user, user.username, user.password, password2);
     return cmd;
 }

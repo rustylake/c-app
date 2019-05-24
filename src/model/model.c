@@ -14,14 +14,14 @@
 #include "model/model.h"
 #include "model/list.h"
 
-int YN() {
+int YN(char it[]) {
     int cmd = 0;
     int re = 0;
     while (re != 1) {
-        printf("确定要继续吗（Y/N）\n");
+        printf("%s（Y/N）\n", it);
         char login;
-        login = getchar();
         fflush(stdin);
+        login = getchar();
         if (login == 'Y' || login == 'y') {
             cmd = 1;
             re = 1;
@@ -60,6 +60,7 @@ int regist(User user, char *username, char *password, char *password2) {
     fflush(stdin);
     printf("请填写问题答案\n");
     gets(user.an);
+    user.point = 0;
     User_add(user);
     return 1;
 }
@@ -89,13 +90,14 @@ int users(void) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
     }
-    printf("    姓名    密码    问题    答案\n");
+    printf("    姓名    密码    问题    答案    积分\n");
     while (fread(&user, sizeof(User), 1, fp)) {
-        printf("     %s       %s       %s       %s\n",
+        printf("     %s       %s       %s       %s    %d\n",
                user.username,
                user.password,
                user.question,
-               user.an);
+               user.an,
+               user.point);
     }
 
     return 1;
@@ -148,7 +150,7 @@ int List_goods_show(List list) {
     if (list.count != 0)
         printf("商品代号     名  称      售  价       数  量       总  价\n");
     for (int i = 0; i < list.count; i++) {
-        printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n",
+        printf("   %-2d        %-10.10s    %-3d           %-3d        %-3d\n",
                list.good[i].id,
                list.good[i].name,
                list.good[i].outprize,
@@ -182,6 +184,8 @@ int lists(void) {
                    list.good[i].total);
         }
         printf("\n                                             合计：%4d元\n", totle);
+        printf("                                             优惠：%4d元\n", list.money);
+        printf("                                             实付：%4d元\n", totle - list.money);
         printf("--------------------------------------------------------\n");
     }
     fclose(fp);

@@ -27,11 +27,12 @@ int User_clone(User *user1, User *user2) {
     strcpy(user1->question, user2->question);
     strcpy(user1->password, user2->password);
     strcpy(user1->an, user2->an);
+    user1->point = user2->point;
     return 1;
 }
 
 int User_change(char username[], int c, char change[]) {
-    if (c != USER_PASSWORD && c != USER_AN && c != USER_QUESTION)return 0;
+    if (c != USER_PASSWORD && c != USER_AN && c != USER_QUESTION && c != USER_POINT)return 0;
     User user;
     FILE *fp = NULL;
     fp = fopen(DB_USER, "rb+");
@@ -53,6 +54,28 @@ int User_change(char username[], int c, char change[]) {
                     strcpy(user.an, change);
                     break;
             }
+            fflush(stdin);
+            fwrite(&user, sizeof(User), 1, fp);
+            fclose(fp);
+            return 1;
+        }
+    }
+    fclose(fp);
+    return 0;
+}
+
+int User_change_point(char username[], int point) {
+    User user;
+    FILE *fp = NULL;
+    fp = fopen(DB_USER, "rb+");
+    if (fp == NULL) {
+        printf("文件打开失败，请联系管理员");
+        return USER_FAIL;
+    }
+    while (fread(&user, sizeof(User), 1, fp)) {
+        if (click_password(user.username, username)) {
+            fseek(fp, sizeof(User) * (-1), SEEK_CUR);
+            user.point = point;
             fflush(stdin);
             fwrite(&user, sizeof(User), 1, fp);
             fclose(fp);

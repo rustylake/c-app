@@ -15,6 +15,7 @@ struct List {//这个名字不是很好。。。。   忘了链表也叫list了
     int count;//商品种类的数量
     Good good[20];
     char time[64];
+    int money;
 };
 typedef struct List List;
 
