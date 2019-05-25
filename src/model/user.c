@@ -103,3 +103,29 @@ int User_scarch(User *user, char *username) {
     return USER_FAIL;
 
 }
+
+int User_delate(char username[]) {
+    FILE *fp = NULL;
+    fp = fopen(DB_USER, "ab+");
+    if (fp == NULL) {
+        printf("文件打开失败，请联系管理员");
+        return USER_FAIL;
+    }
+    FILE *newfp = NULL;
+    newfp = fopen("../users1.db", "ab+");
+    if (newfp == NULL) {
+        printf("文件打开失败，请联系管理员");
+        return USER_FAIL;
+    }
+    User user;
+    while (fread(&user, sizeof(User), 1, fp)) {
+        if (abs(strcmp(user.username, username))) {
+            fwrite(&user, sizeof(User), 1, newfp);
+        }
+    }
+    fclose(fp);
+    fclose(newfp);
+    system("del ..\\users.db");
+    system("rename ..\\users1.db users.db");
+    return 1;
+}

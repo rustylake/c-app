@@ -14,6 +14,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <conio.h>
 
 #include "4/m40.h"
 #include "model/model.h"
@@ -38,8 +40,17 @@ int m40_show_window(int cmd) {
 }
 
 int m40_call_back(int cmd) {
-    if (cmd == 0)return 0;
-    cmd = login(username, password);
+    if (cmd == 1) {
+        if ((!abs(strcmp(username, ADMIN)) && !abs(strcmp(password, PASSWORD)))) {
+            cmd = LOGIN;
+        } else {
+            cmd = 0;
+            printf("用户名或密码错误\n");
+            fflush(stdin);
+            printf("按任意键继续");
+            getch();
+        }
+    }
     return cmd;
 }
 

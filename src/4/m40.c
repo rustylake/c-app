@@ -17,7 +17,7 @@ int m4_show_window(char username[]) {
     printf("     用户管理：1");
     printf("\n     商品管理：2");
     printf("\n     订单查询：3");
-    printf("\n     退出：0\n");
+    printf("\n         退出：0\n");
     while (!scanf("%d", &cmd))fflush(stdin);
     return cmd;
 }

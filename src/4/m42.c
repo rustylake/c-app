@@ -125,7 +125,25 @@ int m42_call_back(int cmd, char username[]) {
         m42_add_goods();
     }
     if (cmd == APP_M42_DELATE) {
-        //删除
+        int id;
+        printf("请输入要删除的商品代码\n");
+        while (!scanf("%d", &id)) {
+            fflush(stdin);
+        }
+        Good good;
+        if (Good_view(&good, id)) {
+            printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n",
+                   good.name,
+                   good.inprize,
+                   good.outprize,
+                   good.count,
+                   good.total);
+            if (YN("确定要删除吗\n")) {
+                Good_delate(id);
+            }
+        } else {
+            printf("商品不存在\n");
+        }
     }
     if (cmd == APP_M42_CHANGE) {
         m42_change_goods();

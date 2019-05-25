@@ -99,7 +99,7 @@ int users(void) {
                user.an,
                user.point);
     }
-
+    fclose(fp);
     return 1;
 }
 

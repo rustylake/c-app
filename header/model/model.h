@@ -11,7 +11,9 @@
 #define CMD 999
 #define LOGIN 1
 #define VERSION "V1.4.0"//添加购物车
-#define UNLOGIN "unlogin"
+#define UNLOGIN "unlogin"//用户名最好不要起名叫这个
+#define ADMIN "1"//管理员账户
+#define PASSWORD "1"//管理员密码
 
 #include "model/user.h"
 #include "model/list.h"

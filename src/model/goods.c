@@ -2,6 +2,7 @@
 // Created by pengy on 2019/5/3.
 //
 #include <stdio.h>
+#include <stdlib.h>
 #include <direct.h>
 
 #include "model/model.h"
@@ -150,4 +151,30 @@ int Good_view(Good *good, int id) {
         return 1;
     else
         return Good_FAIL;
+}
+
+int Good_delate(int id) {
+    FILE *fp = NULL;
+    fp = fopen(DB_USER, "ab+");
+    if (fp == NULL) {
+        printf("文件打开失败，请联系管理员");
+        return USER_FAIL;
+    }
+    FILE *newfp = NULL;
+    newfp = fopen("../goods1.db", "ab+");
+    if (newfp == NULL) {
+        printf("文件打开失败，请联系管理员");
+        return USER_FAIL;
+    }
+    Good good;
+    while (fread(&good, sizeof(Good), 1, fp)) {
+        if (good.id == id) {
+            fwrite(&good, sizeof(Good), 1, newfp);
+        }
+    }
+    fclose(fp);
+    fclose(newfp);
+    system("del ..\\goods.db");
+    system("rename ..\\goods1.db goods.db");
+    return 1;
 }

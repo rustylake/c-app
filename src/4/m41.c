@@ -56,9 +56,7 @@ int m42_change_user() {
         User_change(username, n, new);
         printf("\n修改成功");
     }
-    printf("\n按任意键继续");
-    fflush(stdin);
-    getch();
+
 }
 
 int m41_show_window(char username[]) {
@@ -66,7 +64,8 @@ int m41_show_window(char username[]) {
     show_head(username);
     users();
     printf("请选择要执行的操作：\n");
-    printf("     修改用户信息：1");
+    printf("     修改用户信息：1\n");
+    printf("         删除用户：2");
     printf("\n     退出：0\n");
     while (!scanf("%d", &cmd))
         fflush(stdin);
@@ -76,6 +75,26 @@ int m41_show_window(char username[]) {
 int m41_call_back(int cmd) {
     if (cmd == 1) {
         m42_change_user();
+    }
+    if (cmd == 2) {
+        char username[128];
+        printf("\n请输入要删除的用户姓名\n");
+        fflush(stdin);
+        gets(username);
+        User user;
+        if (!User_scarch(&user, username)) {
+            printf("用户不存在\n");
+        } else {
+            if (YN("确定要删除吗")) {
+                User_delate(username);
+                printf("删除成功\n");
+            }
+        }
+    }
+    if (cmd != 0) {
+        printf("\n按任意键继续");
+        fflush(stdin);
+        getch();
     }
     return cmd;
 }

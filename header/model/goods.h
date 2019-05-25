@@ -29,5 +29,6 @@ int Good_change_Name(int id, char name[]);//根据id更改name，成功返回0，失败返回G
 int Good_change(int id, int c, int number);//根据id将商品第c项的内容改为number，成功返回1，失败返回Good_fail
 int Good_view(Good *, int id);//根据id查找商品 查找成功返回1 失败返回Good_fail
 int Good_getId(char name[]);//根据name查询id,查找成功返回id 失败返回Good_fail
+int Good_delate(int id);//删除指定id的商品
 
 #endif //APP_GOODS_H

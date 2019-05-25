@@ -26,4 +26,5 @@ int User_add(User);//增加用户
 int User_change(char username[], int, char[]);//将username的用户int项的内容改为char，成功返回1，失败返回0
 int User_scarch(User *user, char username[]);//查 查找成功返回1 失败返回0
 int User_change_point(char username[], int point);//更改用户积分
+int User_delate(char username[]);
 #endif //APP_USER_H
