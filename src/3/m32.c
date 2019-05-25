@@ -106,7 +106,7 @@ int m32_all(List list) {
     List_add(list);
     system("del ..\\goods1.db");
     printf("\n\n总金额为：%4d元\n", totle);
-    printf("积分抵消:  %4d元\n", money);
+    printf("积分抵消: %4d元\n", money);
     printf("实付款：  %4d元\n", totle - money);
     printf("欢迎您下次光临\n");
     return 1;

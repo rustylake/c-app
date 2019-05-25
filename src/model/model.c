@@ -90,9 +90,9 @@ int users(void) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
     }
-    printf("    姓名    密码    问题    答案    积分\n");
+    printf("        姓名        密码        问题        答案        积分\n");
     while (fread(&user, sizeof(User), 1, fp)) {
-        printf("     %s       %s       %s       %s    %d\n",
+        printf("         %s           %s           %s           %s           %d\n",
                user.username,
                user.password,
                user.question,
@@ -111,9 +111,9 @@ int goods(void) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
     }
-    printf("商品代号     名  称      售  价       进  价       数  量       总  价\n");
+    printf("商品代号       名  称        售  价         进  价         数  量         总  价\n");
     while (fread(&good, sizeof(Good), 1, fp)) {
-        printf("   %-2d      %-10.10s       %-3d          %-3d          %-3d          %-3d\n",
+        printf("   %-2d        %-10.10s         %-3d            %-3d            %-3d            %-3d\n",
                good.id,
                good.name,
                good.outprize,
@@ -148,9 +148,9 @@ int get_current_time(char times[]) {
 
 int List_goods_show(List list) {
     if (list.count != 0)
-        printf("商品代号     名  称      售  价       数  量       总  价\n");
+        printf("商品代号       名  称        售  价         数  量         总  价\n");
     for (int i = 0; i < list.count; i++) {
-        printf("   %-2d        %-10.10s    %-3d           %-3d        %-3d\n",
+        printf("   %-2d            %-6.10s      %-3d             %-3d          %-3d\n",
                list.good[i].id,
                list.good[i].name,
                list.good[i].outprize,
@@ -172,11 +172,11 @@ int lists(void) {
         printf("\n顾客姓名：%s\n", list.username);
         printf("购买时间：%s\n", list.time);
         printf("购买商品：\n");
-        printf("商品代号     名  称      售  价       数  量       总  价\n");
+        printf("商品代号       名  称        售  价         数  量         总  价\n");
         int totle = 0;
         for (int i = 0; i < list.count; i++) {
             totle += list.good[i].total;
-            printf("   %-2d        %-10.10s    %-3d           %-3d         %-3d\n",
+            printf("   %-2d          %-6.10s          %-3d           %-3d           %-3d\n",
                    list.good[i].id,
                    list.good[i].name,
                    list.good[i].outprize,

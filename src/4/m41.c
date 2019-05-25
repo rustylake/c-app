@@ -11,26 +11,15 @@
 #include "model/user.h"
 #include "4/m41.h"
 
-int m41_show_window(char username[]) {
-    int cmd = CMD;
-    show_head(username);
-    users();
-    printf("请选择要执行的操作：\n");
-    printf("     修改用户信息：1");
-    printf("\n     退出：0\n");
-    while (!scanf("%d", &cmd))
-        fflush(stdin);
-    return cmd;
-}
-
-int m41_call_back(int cmd) {
-    if (cmd == 1) {
-        char username[128];
-        printf("要修改的用户名字是：");
-        fflush(stdin);
-        gets(username);
-        User user;
-        User_scarch(&user, username);
+int m42_change_user() {
+    char username[128];
+    printf("要修改的用户名字是：");
+    fflush(stdin);
+    gets(username);
+    User user;
+    if (User_scarch(&user, username) == USER_FAIL) {
+        printf("\n用户不存在\n");
+    } else {
         printf("\n姓名：%s   密码：%s   问题：%s  答案：%s\n",
                user.username,
                user.password,
@@ -65,9 +54,28 @@ int m41_call_back(int cmd) {
         gets(new);
         if (!YN("确定要修改吗"))return 0;
         User_change(username, n, new);
-        printf("\n修改成功\n按任意键继续");
+        printf("\n修改成功");
+    }
+    printf("\n按任意键继续");
+    fflush(stdin);
+    getch();
+}
+
+int m41_show_window(char username[]) {
+    int cmd = CMD;
+    show_head(username);
+    users();
+    printf("请选择要执行的操作：\n");
+    printf("     修改用户信息：1");
+    printf("\n     退出：0\n");
+    while (!scanf("%d", &cmd))
         fflush(stdin);
-        getch();
+    return cmd;
+}
+
+int m41_call_back(int cmd) {
+    if (cmd == 1) {
+        m42_change_user();
     }
     return cmd;
 }

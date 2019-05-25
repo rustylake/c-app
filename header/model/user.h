@@ -5,7 +5,7 @@
 #ifndef APP_USER_H
 #define APP_USER_H
 
-#define USER_FAIL 2
+#define USER_FAIL 0
 #define USER_PASSWORD 20
 #define USER_QUESTION 30
 #define USER_AN 40

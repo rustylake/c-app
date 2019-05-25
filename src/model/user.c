@@ -22,7 +22,7 @@ int User_add(User user) {
 
 int User_clone(User *user1, User *user2) {
     if (user1 == NULL || user2 == NULL)
-        return 0;
+        return USER_FAIL;
     strcpy(user1->username, user2->username);
     strcpy(user1->question, user2->question);
     strcpy(user1->password, user2->password);
@@ -61,7 +61,7 @@ int User_change(char username[], int c, char change[]) {
         }
     }
     fclose(fp);
-    return 0;
+    return USER_FAIL;
 }
 
 int User_change_point(char username[], int point) {
@@ -83,7 +83,7 @@ int User_change_point(char username[], int point) {
         }
     }
     fclose(fp);
-    return 0;
+    return USER_FAIL;
 }
 
 int User_scarch(User *user, char *username) {
@@ -100,6 +100,6 @@ int User_scarch(User *user, char *username) {
         }
     }
     fclose(fp);
-    return 0;
+    return USER_FAIL;
 
 }

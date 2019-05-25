@@ -10,7 +10,7 @@
 #define DB_Good "../goods.db"
 #define CMD 999
 #define LOGIN 1
-#define VERSION "V1.3.0"//添加购物车
+#define VERSION "V1.4.0"//添加购物车
 #define UNLOGIN "unlogin"
 
 #include "model/user.h"
