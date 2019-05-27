@@ -45,11 +45,11 @@ int click_password(char password1[], char password2[]) {//也感觉没什么用
 }
 
 int regist(User user, char *username, char *password, char *password2) {
-    if (click_password(password2, password) == 0) {
+    if (click_password(password2, password) == 0) {         //检查两次密码是否一致
         printf("\n两次密码输入不一致，请重新输入");
         return M22_FAILD;
     } else {
-        if (click_username(user, username) == 0) {
+        if (click_username(user, username) == 0) {          //检验用户名是否存在
             printf("\n用户名已存在");
             return M22_FAILD;
         }
@@ -60,26 +60,26 @@ int regist(User user, char *username, char *password, char *password2) {
     fflush(stdin);
     printf("请填写问题答案\n");
     gets(user.an);
-    user.point = 0;
-    User_add(user);
+    user.point = 0;//初始化积分为0
+    User_add(user);//添加用户到数据库
     return 1;
 }
 
 int login(char username[], char password[]) {
     int cmd = 0;
     User user;
-    if (!User_scarch(&user, username)) {
+    if (!User_scarch(&user, username)) {//检验用户名是否存在
         printf("用户名不存在\n按任意键继续");
         getch();
     } else {
-        if (!click_password(user.password, password)) {
+        if (!click_password(user.password, password)) {//检查密码是否相同
             printf("密码错误\n按任意键继续");
             getch();
         } else {
             cmd = LOGIN;
         }
     }
-    return cmd;
+    return cmd;//0
 }
 
 int users(void) {
@@ -90,14 +90,14 @@ int users(void) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
     }
-    printf("        姓名        密码        问题        答案        积分\n");
+    printf("        姓名        密码        问题        答案        积分\n");//表头
     while (fread(&user, sizeof(User), 1, fp)) {
         printf("         %s           %s           %s           %s           %d\n",
                user.username,
                user.password,
                user.question,
                user.an,
-               user.point);
+               user.point);             //打印出所有用户信息
     }
     fclose(fp);
     return 1;
@@ -111,7 +111,7 @@ int goods(void) {
         printf("\n文件打开失败，请联系管理员");
         return 0;
     }
-    printf("商品代号       名  称        售  价         进  价         数  量         总  价\n");
+    printf("商品代号       名  称        售  价         进  价         数  量         总  价\n");//表头
     while (fread(&good, sizeof(Good), 1, fp)) {
         printf("   %-2d        %-10.10s         %-3d            %-3d            %-3d            %-3d\n",
                good.id,
@@ -119,16 +119,16 @@ int goods(void) {
                good.outprize,
                good.inprize,
                good.count,
-               good.total);
+               good.total);     //商品信息
     }
     fclose(fp);
     return 1;
 }
 
-int show_head(char username[]) {
+int show_head(char username[]) {//通用界面
     system("CLS");
     if (strcmp(username, UNLOGIN))
-        printf("当前用户：%s", username);
+        printf("当前用户：%s", username);        //登录后显示
     printf("\n\n\n\n");
     printf("                                         商店零售管理系统\n");
     printf("                                                %s\n", VERSION);

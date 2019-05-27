@@ -11,11 +11,11 @@
 #include "model/goods.h"
 
 struct List {//这个名字不是很好。。。。   忘了链表也叫list了
-    char username[128];
+    char username[128];//顾客姓名
     int count;//商品种类的数量
-    Good good[20];
-    char time[64];
-    int money;
+    Good good[20];//所购买的商品
+    char time[64];//购买时的时间
+    int money;//优惠的价格
 };
 typedef struct List List;
 

@@ -21,7 +21,7 @@ int User_add(User user) {
 }
 
 int User_clone(User *user1, User *user2) {
-    if (user1 == NULL || user2 == NULL)
+    if (user1 == NULL || user2 == NULL)//指针传入错误
         return USER_FAIL;
     strcpy(user1->username, user2->username);
     strcpy(user1->question, user2->question);
@@ -32,7 +32,8 @@ int User_clone(User *user1, User *user2) {
 }
 
 int User_change(char username[], int c, char change[]) {
-    if (c != USER_PASSWORD && c != USER_AN && c != USER_QUESTION && c != USER_POINT)return 0;
+    if (c != USER_PASSWORD && c != USER_AN && c != USER_QUESTION && c != USER_POINT)//判断参数正确性
+        return 0;
     User user;
     FILE *fp = NULL;
     fp = fopen(DB_USER, "rb+");
@@ -44,13 +45,13 @@ int User_change(char username[], int c, char change[]) {
         if (click_password(user.username, username)) {
             fseek(fp, sizeof(User) * (-1), SEEK_CUR);
             switch (c) {
-                case USER_PASSWORD:
+                case USER_PASSWORD://密码
                     strcpy(user.password, change);
                     break;
-                case USER_QUESTION:
+                case USER_QUESTION://问题
                     strcpy(user.question, change);
                     break;
-                case USER_AN:
+                case USER_AN://答案
                     strcpy(user.an, change);
                     break;
             }
@@ -76,7 +77,6 @@ int User_change_point(char username[], int point) {
         if (click_password(user.username, username)) {
             fseek(fp, sizeof(User) * (-1), SEEK_CUR);
             user.point = point;
-            fflush(stdin);
             fwrite(&user, sizeof(User), 1, fp);
             fclose(fp);
             return 1;
@@ -111,7 +111,7 @@ int User_delate(char username[]) {
         printf("文件打开失败，请联系管理员");
         return USER_FAIL;
     }
-    FILE *newfp = NULL;
+    FILE *newfp = NULL;//临时文件
     newfp = fopen("../users1.db", "ab+");
     if (newfp == NULL) {
         printf("文件打开失败，请联系管理员");
@@ -119,13 +119,13 @@ int User_delate(char username[]) {
     }
     User user;
     while (fread(&user, sizeof(User), 1, fp)) {
-        if (abs(strcmp(user.username, username))) {
+        if (abs(strcmp(user.username, username))) {//若username相同则跳过
             fwrite(&user, sizeof(User), 1, newfp);
         }
     }
     fclose(fp);
     fclose(newfp);
-    system("del ..\\users.db");
-    system("rename ..\\users1.db users.db");
+    system("del ..\\users.db");//删除原始文件
+    system("rename ..\\users1.db users.db");//更名
     return 1;
 }

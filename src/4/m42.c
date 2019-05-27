@@ -22,7 +22,7 @@ int isTheDemo() {
 int m42_change_goods(void) {
     int id = isTheDemo();
     Good good;
-    if (Good_view(&good, id) == Good_FAIL) {
+    if (Good_scarch(&good, id) == Good_FAIL) {
         printf("商品不存在");
         return 0;
     }
@@ -131,7 +131,7 @@ int m42_call_back(int cmd, char username[]) {
             fflush(stdin);
         }
         Good good;
-        if (Good_view(&good, id)) {
+        if (Good_scarch(&good, id)) {
             printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n",
                    good.name,
                    good.inprize,
@@ -151,7 +151,7 @@ int m42_call_back(int cmd, char username[]) {
     if (cmd == APP_M42_SCARCH) {
         int id = isTheDemo();
         Good good;
-        Good_view(&good, id) ?
+        Good_scarch(&good, id) ?
         printf("商品名称：%-5s  进价：%-3d  售价：%-3d  库存：%-3d  总价：%-3d\n",
                good.name,
                good.inprize,

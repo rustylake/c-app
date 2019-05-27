@@ -20,7 +20,7 @@ int m32_add_goods(List *list) {
         fflush(stdin);
     Good good;
     int counts = 0;
-    if (Good_view(&good, id) == Good_FAIL)
+    if (Good_scarch(&good, id) == Good_FAIL)
         printf("商品不存在\n");
     else {
         printf("商品名称：%-5s  售价：%-3d  库存：%-3d\n  ",
@@ -56,7 +56,7 @@ int m32_delate_goods(List *list) {
         fflush(stdin);
     Good good;
     int counts = 0;
-    if (Good_view(&good, id) == Good_FAIL) {
+    if (Good_scarch(&good, id) == Good_FAIL) {
         printf("商品不存在\n");
         return 0;
     }

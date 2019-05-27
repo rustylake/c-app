@@ -16,7 +16,7 @@ int Good_init(Good *good, char name[128], int count, int inprize, int outprize) 
     good->total = good->count * good->inprize;
     good->outprize = outprize;
     int id;
-    Good good1;
+    Good good1;//用于查找最后一个id
     FILE *fp = NULL;
     fp = fopen(DB_Good, "ab+");
     if (fp == NULL) {
@@ -59,7 +59,8 @@ int Good_clone(Good *Good1, Good *Good2) {
 }
 
 int Good_change(int id, int c, int number) {
-    if (c != Good_COUNT && c != Good_INPRIZE && c != Good_OUTPRIZE)return 0;
+    if (c != Good_COUNT && c != Good_INPRIZE && c != Good_OUTPRIZE)//检查参数
+        return 0;
     Good Good;
     FILE *fp = NULL;
     fp = fopen(DB_Good, "rb+");
@@ -68,7 +69,7 @@ int Good_change(int id, int c, int number) {
         return Good_FAIL;
     }
     while (fread(&Good, sizeof(Good), 1, fp)) {
-        if (Good.id == id) {
+        if (Good.id == id) {            //查找
             fseek(fp, sizeof(Good) * (-1), SEEK_CUR);
             switch (c) {
                 case Good_COUNT:
@@ -80,11 +81,8 @@ int Good_change(int id, int c, int number) {
                 case Good_OUTPRIZE:
                     Good.outprize = number;
                     break;
-                default:
-                    return Good_FAIL;
             }
-            Good.total = Good.inprize * Good.count;
-            fflush(stdin);
+            Good.total = Good.inprize * Good.count;//更改总价
             fwrite(&Good, sizeof(Good), 1, fp);
             fclose(fp);
             return 1;
@@ -102,19 +100,18 @@ int Good_change_Name(int id, char name[]) {
         printf("文件打开失败，请联系管理员");
         return Good_FAIL;
     }
-    if (fseek(fp, sizeof(Good) * (id - 1), SEEK_SET) == -1)
+    if (fseek(fp, sizeof(Good) * (id - 1), SEEK_SET) == -1)//玄学问题可能失效，根据id移动指针
         return Good_FAIL;
     fread(&Good, sizeof(Good), 1, fp);
-        if (Good.id == id) {
-            fseek(fp, sizeof(Good) * (-1), SEEK_CUR);
-            strcpy(Good.name, name);
-            fflush(stdin);
-            fwrite(&Good, sizeof(Good), 1, fp);
-            fclose(fp);
-            return 1;
-
+    if (Good.id == id) {
+        fseek(fp, sizeof(Good) * (-1), SEEK_CUR);
+        strcpy(Good.name, name);
+        fflush(stdin);
+        fwrite(&Good, sizeof(Good), 1, fp);
+        fclose(fp);
+        return 1;
     }
-    fclose(fp);
+    fclose(fp);//商品不存在
     return Good_FAIL;
 }
 
@@ -136,7 +133,7 @@ int Good_getId(char name[]) {
     return Good_FAIL;
 }
 
-int Good_view(Good *good, int id) {
+int Good_scarch(Good *good, int id) {
     FILE *fp = NULL;
     fp = fopen(DB_Good, "rb+");
     if (fp == NULL) {
@@ -154,27 +151,33 @@ int Good_view(Good *good, int id) {
 }
 
 int Good_delate(int id) {
+    Good good;
     FILE *fp = NULL;
-    fp = fopen(DB_USER, "ab+");
+    fp = fopen(DB_Good, "rb+");
     if (fp == NULL) {
         printf("文件打开失败，请联系管理员");
         return USER_FAIL;
     }
-    FILE *newfp = NULL;
-    newfp = fopen("../goods1.db", "ab+");
+    FILE *newfp = NULL;//临时文件
+    newfp = fopen("../goods1.db", "rb+");
     if (newfp == NULL) {
         printf("文件打开失败，请联系管理员");
         return USER_FAIL;
     }
-    Good good;
+
     while (fread(&good, sizeof(Good), 1, fp)) {
-        if (good.id == id) {
-            fwrite(&good, sizeof(Good), 1, newfp);
+        if (good.id == id) {            //跳过
+            while (fread(&good, sizeof(Good), 1, fp)) {
+                good.id--;//更改id
+                fwrite(&good, sizeof(Good), 1, newfp);
+            }
+            break;
         }
+        fwrite(&good, sizeof(Good), 1, newfp);
     }
     fclose(fp);
     fclose(newfp);
-    system("del ..\\goods.db");
-    system("rename ..\\goods1.db goods.db");
+    system("del ..\\goods.db");//删除源文件
+    system("rename ..\\goods1.db goods.db");//重命名
     return 1;
 }

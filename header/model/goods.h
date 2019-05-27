@@ -13,12 +13,12 @@
 #define Good_OUTPRIZE 60
 
 struct Good {
-    int id;
-    char name[128];
-    int count;
-    int inprize;
-    int outprize;
-    int total;
+    int id;//商品代码
+    char name[128];//商品名称
+    int count;//商品库存
+    int inprize;//进货价格
+    int outprize;//售价
+    int total;//库存商品总价值
 };
 typedef struct Good Good;
 
@@ -27,7 +27,7 @@ int Good_clone(Good *Good1, Good *Good2);//将Good2复制到Good1 成功返回1 失败返回
 int Good_add(Good);//增加商品,成功返回1，失败返回Good_fail
 int Good_change_Name(int id, char name[]);//根据id更改name，成功返回0，失败返回Good_fail
 int Good_change(int id, int c, int number);//根据id将商品第c项的内容改为number，成功返回1，失败返回Good_fail
-int Good_view(Good *, int id);//根据id查找商品 查找成功返回1 失败返回Good_fail
+int Good_scarch(Good *good, int id);//根据id查找商品 查找成功返回1 失败返回Good_fail
 int Good_getId(char name[]);//根据name查询id,查找成功返回id 失败返回Good_fail
 int Good_delate(int id);//删除指定id的商品
 
